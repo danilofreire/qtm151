@@ -1,0 +1,637 @@
+---
+title: QTM 151 - Introduction to Statistical Computing II
+subtitle: Lecture 04 - Mathematical Operations, Arrays, and Random Numbers
+date: 2024-09-11
+date-format: "DD MMMM, YYYY"
+author:
+  - name: Danilo Freire
+    orcid: 0000-0002-4712-6810
+    email: danilo.freire@emory.edu
+    affiliations: Emory University
+format:
+  clean-revealjs:
+    self-contained: true
+    footer: "[Maths with NumPy](https://raw.githack.com/danilofreire/qtm151/main/lectures/lecture-04/04-maths-arrays-random.html)"
+transition: slide
+transition-speed: default
+scrollable: true
+engine: jupyter
+editor:
+  render-on-save: true
+---
+
+# Welcome to another lecture! 😊 {background-color="#2d4563"}
+
+# Brief recap 📚 {background-color="#2d4563"}
+
+## In the last lecture, we learned how to:
+
+:::{style="margin-top: 40px; font-size: 26px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Install packages in Python using `conda install`
+- Create, access, and modify variables
+- Manipulate lists
+- Use the `print()` function to display information
+:::
+
+:::{.column width="50%"}
+- [Assignment 01](https://github.com/danilofreire/qtm151/blob/main/assignments/02-assignment.ipynb) is due today! 🚨
+- Assignment 02 is already online on Canvas and [GitHub](https://github.com/danilofreire/qtm151/blob/main/assignments/02-assignment.ipynb)
+- Feel free to email your assignments to me at <danilo.freire@emory.edu> or submit it via Canvas (hopefully it is working now!)
+- We will mark them and provide feedback on your work soon
+:::
+:::
+:::
+
+# Questions? {background-color="#2d4563"}
+
+# An announcement from our department 📢 {background-color="#2d4563"}
+
+# QTM Open House! 🏠 {background-color="#2d4563"}
+
+## QTM open house
+
+:::{style="margin-top: 40px; font-size: 26px;"}
+:::{.columns}
+:::{.column width="50%"}
+- The QTM Open House is an event where you can learn more about the QTM major
+- You can meet the faculty, staff, and students
+- It is this Friday, September 13th, from 1:30 to 3:30 PM at PAIS 290
+
+![](figures/qtm-open-house.png){width="70%"}
+:::
+
+:::{.column width="50%"}
+![](figures/qtm-open-house-2.png){width="66%"}
+:::
+:::
+:::
+
+## Today's agenda 
+### Introducing NumPy and `random` 
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+:::{.columns}
+:::{.column width="50%"}
+- A brief overview of [Matplotlib](https://matplotlib.org) and [NumPy](https://numpy.org)
+- [NumPy](https://numpy.org) (short for "Numerical Python") is a library that provides support for large, multi-dimensional arrays and matrices
+- [An array](https://numpy.org/doc/stable/user/absolute_beginners.html) is [a collection of numbers that are arranged in a regular grid]{.alert} (vector, matrix, high-dimensional array - tensors)
+- In simpler terms, NumPy arrays are a "super-powered list of numbers"
+- NumPy is the backbone of many other libraries in Python, such as `pandas` and `scikit-learn`
+- We will also learn about the `random` module, which generates random numbers
+:::
+
+:::{.column width="50%"}
+- NumPy already comes with Anaconda, so you don't need to install it
+- In case you are using a different Python distribution, you can install NumPy using `conda install numpy` or `pip install numpy`
+- The alias for NumPy is `np`, so you can import it using `import numpy as np`
+- The `random` module is part of the Python Standard Library, so you don't need to install it
+- You can just import it using `import random` 
+  - Interestingly, the `random` module does not have an alias 🤷🏻‍♂️
+
+![](figures/numpy.png){width="30%"}
+:::
+:::
+:::
+
+# Let's get started! 🚀 {background-color="#2d4563"}
+
+# Visualising data with Matplotlib 📊 {background-color="#2d4563"}
+
+## Visualising lists with histograms {#sec-histogram-01}
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+:::{.columns}
+:::{.column width="50%"}
+- We can use the `matplotlib` package to create plots
+- The `hist()` function creates a histogram
+- We can pass a list as an argument to the `hist()` function
+- We can also customise the plot by adding labels, titles, and changing the colour (more on that later)
+- You print the graph by using the `show()` function
+
+<br>
+
+- Try it yourself! 
+- Create a list with repeated string values (maybe repeat the movies you like a few times?) and compute your own histogram [[Appendix 01]{.button}](#sec-appendix-01)
+:::
+
+:::{.column width="50%"}
+```{python}
+#| echo: true
+#| eval: true
+import matplotlib.pyplot as plt
+
+# Create a new list
+list_colours_02 = ["red","yellow","yellow","green","red","red"]
+print(list_colours_02)
+
+# Create a histogram of the list of numbers
+plt.hist(x = list_colours_02)
+plt.show()
+```
+:::
+:::
+:::
+
+## Scatter plots 
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+:::{.columns}
+:::{.column width="50%"}
+- We can also create scatter plots using the `scatter()` function
+- The `scatter()` function takes two lists as arguments
+  - The first list contains the x-coordinates
+  - The second list contains the y-coordinates
+- We use them to visualise the relationship between two continuous variables
+- Here, we will use the `xlabel()` and `ylabel()` functions to label the axes
+:::
+
+:::{.column width="50%"}
+```{python}
+#| echo: true
+#| eval: true
+list_numbers = [1,2,3,4,5]
+list_numbers_sqr = [1,4,9,16,25]
+
+# Create a scatter plot
+plt.scatter(x = list_numbers, y = list_numbers_sqr)
+plt.xlabel("A meaningful name for the X-axis") 
+plt.ylabel("Favourite name for Y-axis") 
+plt.show()
+```
+:::
+:::
+:::
+
+## Scatter plots {#sec-scatter-01}
+
+:::{style="margin-top: 30px; font-size: 26px;"}
+- Try it yourself!
+- Create two lists with numbers, then create your own scatter plot [[Appendix 02]{.button}](#sec-appendix-02)
+:::
+
+## Importing NumPy and Matplotlib
+
+:::{style="margin-top: 40px; font-size: 26px;"}
+:::{.columns}
+:::{.column width="50%"}
+- As usual, we start by importing the libraries we will use
+- NumPy has several functions
+- For instance, $ln(x), e^x, sin(x), cos(x), \sqrt{x}$
+- Remember that exponentiation in Python is done using `**`, not `^`
+
+<br>
+
+- You can check a list of NumPy functions [here](https://numpy.org/doc/stable/reference/routines.math.html) (there are many!)
+:::
+
+:::{.column width="50%"}
+```{python}
+#| echo: true
+#| eval: true
+# Importing packages
+import numpy as np
+import matplotlib.pyplot as plt
+
+# log(x) computes the logarithm with base "e" (Euler constant)
+# exp(x) compute the Euler constant raised to the power of "x"
+# sin(x) computes the sine of x
+# cos(x) computes the cosine of x
+# In this example, we're substituting x = 1
+print(np.log(1))
+print(np.exp(1))
+print(np.sin(1))
+print(np.cos(1))
+print(np.sqrt(1))
+```
+:::
+::: 
+:::
+
+## Try it yourself! 🧠 {#sec-functions}
+
+:::{style="margin-top: 40px; font-size: 26px;"}
+- Create a new variable, $x = 5$
+- Compute $\pi x^2$
+- Compute $\frac{1}{\sqrt{2\pi}}e^{-x^2}$
+  - This is the probability density function of the standard normal distribution (don't worry if you don't know what it is yet! 🤓) [[Appendix 03]{.button}](#sec-appendix-03)
+
+<br>
+
+- Don't forget how to exponentiate in Python 😉 
+
+```{python}
+#| echo: true
+#| eval: true
+x = 10
+x ** 5
+
+# Not x^5
+``` 
+:::
+
+# Vector arrays with NumPy 📊 {background-color="#2d4563"}
+
+## Creating arrays from lists
+
+:::{style="margin-top: 40px; font-size: 26px;"}
+- NumPy arrays are created using the `np.array()` function
+- We can create arrays from lists
+- We can also create arrays with a sequence of numbers using `np.arange()`
+- We can create arrays with zeros or ones using `np.zeros()` and `np.ones()`
+:::
+
+## Creating arrays from lists
+
+:::{style="margin-top: 40px; font-size: 23px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Create an array from a list
+
+- $a = \begin{pmatrix} 1 \\ 2 \\ 3 \end{pmatrix}$
+- $b = \begin{pmatrix} 0 \\ 1 \\ 0\end{pmatrix}$
+- $c = \begin{pmatrix} 10 \\ 100 \\ 1000 \\ 2000 \\ 5000 \end{pmatrix}$
+- $d = \begin{pmatrix} 4 \\ 2 \end{pmatrix}$
+:::
+
+:::{.column width="50%"}
+```{python}
+#| echo: true
+#| eval: true
+vec_a  = np.array([1,2,3])
+vec_b  = np.array([0,1,0])
+vec_c  = np.array([10,100,1000,2000,5000])
+vec_d  = np.array([4,2])
+```
+:::
+:::
+:::
+
+## Accessing an element of an array
+
+:::{style="margin-top: 40px; font-size: 26px;"}
+- We can access elements of an array using square brackets `[]`
+- Remember that Python is zero-indexed
+  
+- Access the first and the third element of $a$
+```{python}
+#| echo: true
+#| eval: true
+print(vec_a)
+print(vec_a[0])
+print(vec_a[2])
+``` 
+:::
+
+## Operations with a single array and a scalar
+
+:::{style="margin-top: 40px; font-size: 26px;"}
+:::{.columns}
+:::{.column width="50%"}
+- We can perform operations with a single array and a scalar
+- For instance, we can add or multiply a scalar to an array
+
+<br>
+
+- Add 2 to each element of $a$
+- $a + 2 = \begin{pmatrix} a_1 + 2 \\ a_2 + 2 \\ a_3 + 2 \end{pmatrix}$
+:::
+
+:::{.column width="50%"}
+```{python}
+#| echo: true
+#| eval: true
+# Print the original array
+print(vec_a)
+
+# Adding 2 to each element of a
+print(vec_a + 2)
+```
+
+- A scalar refers to either an int or float
+- We can do many common operations with 
+
+```{python}
+#| echo: true
+#| eval: true 
+print(vec_a * 2)
+print(vec_a / 2)
+print(vec_a + 2)
+print(vec_a ** 2)
+```
+:::
+:::
+:::
+
+## Element-by-element addition between two arrays of the same size
+
+:::{style="margin-top: 30px; font-size: 26px;"}
+:::{.columns}
+:::{.column width="50%"}
+$a + b = \begin{pmatrix} a_1 \\ a_2 \\ a_3 \end{pmatrix} +$
+$\begin{pmatrix} b_1 \\ b_2 \\ b_3 \end{pmatrix} =$
+$\begin{pmatrix} a_1 + b_1 \\ a_2 + b_2 \\ a_3 + b_3 \end{pmatrix}$
+:::
+
+:::{.column width="50%"}
+```{python}
+#| echo: true
+#| eval: true 
+print(vec_a)
+print(vec_b)
+
+# When you add two arrays of the same size,
+# Python adds the individual elements in each position
+print(vec_a + vec_b)
+```
+:::
+:::
+:::
+
+## Element-by-element multiplication between two arrays of the same size
+
+:::{style="margin-top: 30px; font-size: 26px;"}
+:::{.columns}
+:::{.column width="50%"}
+$a * b = \begin{pmatrix} a_1 * b_1 \\ a_2 * b_2 \\ a_3 * b_3 \end{pmatrix}$
+:::
+
+:::{.column width="50%"}
+```{python}
+#| echo: true
+#| eval: true
+print(vec_a)
+print(vec_b)
+
+# When you multiply two arrays of the same size,
+# Python multiplies the individual elements in each position
+print(vec_a * vec_b)
+
+# We can do other similar element-by-element operations
+# such as subtraction, and division.
+print(vec_a - vec_b)
+print(vec_a / vec_b)
+```
+:::
+:::
+:::
+
+# Summary statistics 📊 {background-color="#2d4563"}
+
+## Summary statistics of an array {#sec-summary}
+
+:::{style="margin-top: 40px; font-size: 26px;"}
+:::{.columns}
+:::{.column width="50%"}
+- NumPy provides several functions to compute summary statistics of an array
+- For instance, we can compute the mean, median, standard deviation, variance, minimum, and maximum
+- We can also compute the sum, product, and cumulative sum
+
+<br>
+
+```{python}
+#| echo: true
+#| eval: true
+print(np.mean(vec_a))
+print(np.std(vec_a))
+print(np.min(vec_a))
+print(np.median(vec_a))
+print(np.max(vec_a))
+```
+:::
+
+:::{.column width="50%"}
+- Try it yourself! Compute the mean of
+
+$e = \begin{pmatrix} 10 \\ 8 \\ 15 \\ 0 \\ 24 \end{pmatrix}$
+
+[[Appendix 05]{.button}](#sec-appendix-05)
+:::
+:::
+:::
+
+## Common pitfall
+### Make sure that the arrays are of the same size!
+
+:::{style="margin-top: 40px; font-size: 26px;"}
+```{python}
+#| echo: true
+#| eval: true
+print(vec_a)
+print(vec_c)
+
+# Print the shape of the arrays
+print(vec_a.shape)
+print(vec_c.shape)
+```
+
+```{python}
+#| echo: true
+#| eval: false 
+# When you add two arrays of different sizes,
+# Python will raise an error
+print(vec_a + vec_c)
+```
+:::
+
+# Questions? {background-color="#2d4563"}
+
+# Random numbers with Python 🎲 {background-color="#2d4563"}
+
+## Generating random numbers
+
+:::{style="margin-top: 40px; font-size: 26px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Why randomness?
+  - Simulate different scenarios: high risk or low risk
+  - Study properties of a complex system and/or estimator
+  - In medicine, randomly assign subjects to treatment or control
+  - In finance, simulate stock prices
+  - In sports, simulate outcomes of games, etc
+:::
+
+:::{.column width="50%"}
+- This code creates a vector of random variables generated from a normal distribution 
+- It has the mean "loc" (location) and standard deviation "scale"
+- The number of distinct variabels is "size"
+
+```{python}
+#| echo: true
+#| eval: true
+
+# Generate 10 random variables from a normal distribution
+# with mean 0 and standard deviation 1
+randomvar_a = np.random.normal(loc=0, scale=1, size=10)
+print(randomvar_a)
+```
+:::
+:::
+:::
+
+## Random numbers differ every time!
+
+:::{style="margin-top: 40px; font-size: 30px;"}
+- Avoid this problem by drawing from a "pregenerated" set.
+- This is called a seed, and it is set using `np.random.seed()`
+- This allows for [reproducibility](https://en.wikipedia.org/wiki/Reproducibility) of results
+
+```{python}
+#| echo: true
+#| eval: true
+np.random.seed(151)
+
+random_var_b = np.random.normal(loc=0, scale=1, size=10)
+print(random_var_b)
+```
+:::
+
+## Compute a histogram with the results
+
+:::{style="margin-top: 40px; font-size: 26px;"}
+- We can use the `plt.hist()` function to compute a histogram
+
+```{python}
+#| echo: true
+#| eval: true
+
+# Create a histogram of the random variable
+randomvar_x = np.random.normal(loc=0, scale=1, size=1000)
+
+plt.hist(x = randomvar_x)
+plt.xlabel("Variable a")
+plt.ylabel("Frequency")
+plt.title("Histogram of random variable a")
+plt.show()
+```
+:::
+
+## Try it yourself! {#sec-histogram}
+
+:::{style="margin-top: 40px; font-size: 26px;"}
+- Try this again with $size = 100, 1000, 10000$ and see how the histogram changes [[Appendix 03]{.button}](#sec-appendix-03)
+:::
+
+# And that's it for today! 🎉 {background-color="#2d4563"}
+
+## Summary
+
+:::{style="margin-top: 40px; font-size: 26px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Today we larned to:
+  - Use mathematical functions in NumPy
+  - Create arrays from lists
+  - Access elements of an array
+  - Perform operations with a single array and a scalar
+  - Perform element-by-element operations between two arrays
+  - Compute summary statistics of an array
+  - Generate random numbers
+  - Create histograms of random variables
+:::
+
+:::{.column width="50%"}
+- In our next lecture, we will learn how to:
+  - Introduce boolean types 
+  - Test different categories of expressions with text and numbers 
+  - Study if/else statements
+:::
+:::
+:::
+
+# Questions? {background-color="#2d4563"}
+
+# Thank you and see you next time! 🙏🏼 {background-color="#2d4563"}
+
+## Appendix 01 {#sec-appendix-01}
+### Create a list with repeated string values and compute your own histogram
+
+:::{style="font-size: 24px;"}
+```{python}
+#| echo: true
+#| eval: true
+favourite_books = ["The Odyssey", "Don Quijote", "The Illiad", "The Odyssey", "The Illiad", "The Illiad"]
+plt.hist(x = favourite_books)
+plt.show()
+```
+:::
+
+[[Back to the main text]{.button}](#sec-histogram-01)
+
+## Appendix 02 {#sec-appendix-02}
+### Create two lists with numbers, then create your own scatter plot
+
+:::{style="font-size: 24px;"}
+```{python}
+#| echo: true
+#| eval: true
+list_x = [5, 10, 15, 20, 25]
+list_y = [10, 20, 30, 40, 50]
+
+plt.scatter(x = list_x, y = list_y)
+plt.xlabel("X-axis")
+plt.ylabel("Y-axis")
+plt.show()
+```
+:::
+
+[[Back to the main text]{.button}](#sec-scatter-01)
+
+## Appendix 03 {#sec-appendix-03}
+### Mathematical functions in NumPy
+
+- Create a new variable, $x = 5$
+- Compute $\pi x^2$
+- Compute $\frac{1}{\sqrt{2\pi}}e^{-x^2}$
+ 
+```{python}
+#| echo: true
+#| eval: true
+x = 5
+print(np.pi * x ** 2)
+print(1 / np.sqrt(2 * np.pi) * np.exp(-x ** 2))
+```
+
+[[Back to the main text]{.button}](#sec-functions)
+
+## Appendix 04 {#sec-appendix-04}
+### Summary statistics of an array
+
+:::{style="margin-top: 40px; font-size: 26px;"}
+- Compute the mean of
+- $e = \begin{pmatrix} 10 \\ 8 \\ 15 \\ 0 \\ 24 \end{pmatrix}$
+
+```{python}
+#| echo: true
+#| eval: true
+vec_e = np.array([10, 8, 15, 0, 24])
+print(np.mean(vec_e))
+```
+
+[[Back to the main text]{.button}](#sec-summary)
+:::
+
+## Appendix 05 {#sec-appendix-05}
+### Histogram of a random variable
+
+:::{style="margin-top: 40px; font-size: 26px;"}
+- Create a histogram of the random variable
+- Try this again with $size = 100, 1000, 10000$ and see how the histogram changes
+
+```{python}
+#| echo: true
+#| eval: true
+
+# Create a histogram of the random variable
+randomvar_x = np.random.normal(loc=0, scale=1, size=100)
+
+plt.hist(x = randomvar_x)
+plt.xlabel("Variable a")
+plt.ylabel("Frequency")
+plt.title("Histogram of random variable a")
+plt.show()
+```
+
+[[Back to the main text]{.button}](#sec-histogram-02)
+:::

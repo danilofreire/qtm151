@@ -1,0 +1,820 @@
+---
+title: QTM 151 - Introduction to Statistical Computing II
+subtitle: Lecture 05 - Boolean Logic and Conditional Statements
+date: last-modified
+date-format: "DD MMMM, YYYY"
+author:
+  - name: Danilo Freire
+    orcid: 0000-0002-4712-6810
+    email: danilo.freire@emory.edu
+    affiliations: Emory University
+format:
+  clean-revealjs:
+    self-contained: true
+    footer: "[Conditional Statements]()"
+transition: slide
+transition-speed: default
+scrollable: true
+engine: jupyter
+editor:
+  render-on-save: true
+---
+
+# Nice to see you all again! 😊 {background-color="#2d4563"}
+
+# Brief recap of last class 📚 {background-color="#2d4563"} 
+
+## Brief recap
+### In the last class, we did the following: 
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.colums}
+:::{.column width="50%"}
+- Introduced Matplotlib and NumPy libraries and loaded them with `import matplotlib.pyplot as plt` and `import numpy as np`
+- Created histograms and scatter plots with `plt.hist()` and `plt.scatter()`
+- Explored NumPy mathematical functions: `np.log()`, `np.exp()`, `np.sin()`, `np.sqrt()`
+- Created NumPy arrays and performed operations
+  - Example: `np.array([1,2,3])`, `array1 + array2`
+:::
+
+:::{.column width="50%"}
+- Accessed array elements using indexing (e.g., `array[1:3]`)
+- Performed scalar operations on arrays, such as `array * 2` or `array + 5`
+- Computed summary statistics with `np.mean()`, `np.std()`, `np.min()`, `np.max()`
+- Discussed importance of random numbers in simulations
+- Generated random numbers: e.g., `np.random.normal(loc=0, scale=1, size=10)`
+- Plotted histograms of random variables with `plt.hist()`
+:::
+:::
+:::
+
+# Are you more comfortable with Python now? 🐍 {background-color="#2d4563"}
+
+# Today's class 📚 {background-color="#2d4563"}
+
+## Today's class
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column width="50%"}
+Today we will:
+
+- Learn about [Boolean logic](https://en.wikipedia.org/wiki/Boolean_data_type)
+- Discuss the importance of [conditional statements in programming](https://en.wikipedia.org/wiki/Conditional_(computer_programming))
+- Understand how to use [conditional statements in Python](https://www.w3schools.com/python/python_conditions.asp)
+- Explore the `if`, `elif`, and `else` statements
+- Practice writing conditional statements in Python
+:::
+
+:::{.column width="50%"}
+![](figures/boolean02.png){width="100%"}
+:::
+:::
+:::
+
+:::{.fragment .fade-in}
+:::{style="font-size: 32px; text-align: center;"}
+[Let's get started!]{.alert} 🚀
+:::
+:::
+
+# Boolean logic 🧠 {background-color="#2d4563"}
+
+## Boolean logic
+### A bit of history
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Named after [George Boole](https://en.wikipedia.org/wiki/George_Boole), a British mathematician and philosopher
+- [Boole's work on logic](https://en.wikipedia.org/wiki/Boolean_algebra) laid the foundation for modern computer science
+- Boolean logic is a branch of algebra that deals with [true and false values](https://en.wikipedia.org/wiki/Boolean_data_type)
+- It is useful for computer programming because it is based on [binary](https://en.wikipedia.org/wiki/Binary_number) values
+- In Python, Boolean values are `True` and `False`
+- We use them to [make decisions]{.alert} in our code
+:::
+
+:::{.column width="50%"}
+![](figures/boole.jpg){width="100%"}
+:::
+:::
+:::
+
+# Testing expressions with text 🐍 {background-color="#2d4563"} 
+
+## True and False values
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+- We can test whether two values are equal using the `==` operator ([two equal signs]{.alert})
+- For example, `5 == 5` returns `True`
+- We can also test whether two values are not equal using the `!=` operator ([exclamation mark followed by an equal sign]{.alert})
+- Let's see how this works in Python
+
+- First, let's load the `matplotlib` and `numpy` libraries
+
+```{python}
+#| echo: true
+#| eval: true 
+import matplotlib.pyplot as plt
+import numpy as np
+
+# You can compare two strings by using a double "equal sign"
+# This can be useful if you're trying to evaluate whether data was entered correctly
+
+"Is this the real life?" == "is this just fantasy?" 
+```
+
+Note: the [order of the strings matter]{.alert}!
+
+```{python}
+#| echo: true
+#| eval: true
+"ab" == "ba" 
+```
+:::
+
+## True and False values
+
+:::{style="margin-top: 30px; font-size: 26px;"}
+- Equality of strings is most useful when you're comparing an unknown variable to a benchmark 
+
+- Below, try switching the value of `any_questions`
+
+```{python}
+#| echo: true
+#| eval: true 
+any_questions = "no"
+print(any_questions == "no")
+```
+
+:::{.fragment .fade-in}
+```{python}
+#| echo: true
+#| eval: true
+any_questions = "yes" 
+print(any_questions == "no")
+```
+:::
+:::
+
+## Test for the presence of keywords in a sentence (`in` operator)
+
+:::{style="margin-top: 30px; font-size: 26px;"}
+- We can test whether a keyword is present in a sentence or a list using the `in` operator
+- For example, `"apple" in "I like apples"` returns `True`
+- Let's see how this works in Python
+
+:::{.fragment .fade-in}
+```{python}
+#| echo: true
+#| eval: true
+"apple" in "I like apples"
+```
+:::
+
+:::{.fragment .fade-in}
+```{python}
+#| echo: true
+#| eval: true
+keyword = "economic"
+sentence = "The Federal Reserve makes forecasts about many economic outcomes"
+
+keyword in sentence
+
+# Try changing the keyword!
+```
+:::
+
+:::{.fragment .fade-in}
+- Now, let's test whether a keyword is present in a list
+```{python}
+#| echo: true
+#| eval: true
+current_month = "September"
+list_summer_months = ["June","July","August"]
+
+print(current_month in list_summer_months)
+print('June' in list_summer_months)
+```
+:::
+:::
+
+## Common pitfall when testing expressions
+
+:::{style="margin-top: 30px; font-size: 23px;"}
+- Be careful when testing expressions with text
+- Python is case-sensitive, so `"apple" == "Apple"` returns `False`
+- To avoid this, you can use the `lower()` method to convert all characters to lowercase
+- And please remember there is a difference between double equal signs `==` and single equal sign `=`
+
+:::{.fragment .fade-in}
+```{python}
+#| echo: true
+#| eval: true
+"apple" == "Apple"
+```
+:::
+
+:::{.fragment .fade-in}
+```{python}
+#| echo: true
+#| eval: true
+"apple".lower() == "Apple".lower()
+```
+:::
+
+:::{.fragment .fade-in}
+```{python}
+#| echo: true
+#| eval: true
+# A single vs double equality sign makes a BIG difference
+# When you have a single equality (=) you are assignning the variable
+# When you have a double equality (==) you are comparing two values
+message_hello = "hello"
+
+print(message_hello == "hello")
+```
+:::
+:::
+
+## Try it out! {#sec:question01}
+
+:::{style="margin-top: 30px; font-size: 26px;"}
+- Now, let's test whether you can identify the correct expression
+
+- Write code to check whether the string "red" is contained in the list: `["red","green","yellow","orange"]` [[Appendix 01]{.button}](#sec:appendix01)
+:::
+
+# So far so good? 🤔 {background-color="#2d4563"}
+
+# Testing expressions with numbers 🐍 {background-color="#2d4563"}
+
+## Testing expressions with numbers
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+- Tests with numbers
+  - Strictly less than (<), less than or equal (<=)
+  - Equal (==)
+  - Strictly more than (>), greater than or equal to (>=)
+
+- Let's see how this works in Python
+
+```{python}
+#| echo: true
+#| eval: true
+x = 5
+
+print(x < 5)
+print(x <= 5)
+print(x == 5)
+print(x >= 5)
+print(x > 5)
+```
+:::
+
+## Validate a data type 
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+- We can test whether a variable is of a certain data type using the `isinstance()` function
+- For example, `isinstance(5, int)` returns `True`
+- Other data types include `float`, `str`, `list`, `tuple`, `dict`, `set`, `bool`
+
+```{python}
+#| echo: true
+#| eval: true
+y = 10
+
+print(isinstance(y,int))
+print(isinstance(y,float))
+print(isinstance(y,str))
+```
+:::
+
+## Equality of vectors {#sec:question02}
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+- We can test whether two vectors are equal using the `==` operator
+- For example, `[1,2,3] == [1,2,3]` returns `True`
+- Please note that the equality of vectors is [done element-wise](https://numpy.org/doc/stable/reference/generated/numpy.array_equal.html)
+
+```{python}
+#| echo: true
+#| eval: true
+vec_a = np.array([1,2,3])
+vec_b = np.array([1,2,4])
+
+vec_a == vec_b
+```
+
+- [Try it out!]{.alert} 🚀
+
+- Define $x= -1$. Check whether $x^2 + 2x + 1 = 0$ is true [[Appendix 02]{.button}](#sec:appendix02)
+  - Please remember that $x^2$ is written as `x**2` in Python
+  - Please note the difference between `==` and `=`
+:::
+
+# Testing multiple conditions 🐍 {background-color="#2d4563"}
+
+## Testing multiple conditions
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column width="50%"}
+- We can test multiple conditions using the `and` and `or` operators
+- The `and` operator returns `True` if both conditions are `True`
+- The `or` operator returns `True` if at least one condition is `True`
+:::
+
+:::{.column width="50%"}
+![](figures/boolean01.jpg){width="100%"}
+:::
+:::
+:::
+
+## `not`: the negation operator
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column width="50%"}
+- We can negate a condition using the `not` operator
+- The `not` operator returns `True` if the condition is `False` and vice versa
+  - Yes, it's a bit confusing at first, but it's intuitive once you see it in action
+- For instance, imagine that you want to know whether someone can vote in the US 
+  - Here let's assume the person is a national and we only care about age
+  - The person can vote if they are at least 18 years old
+:::
+
+:::{.column width="50%"}
+```{python}
+#| echo: true
+#| eval: true
+age  = 22
+
+# Can this person legally vote in the US?
+not (age < 18)
+```
+
+- The `not` operator can be separated by a space and parentheses are not necessary
+- But parentheses can be helpful to organize your code logically
+
+```{python}
+#| echo: true
+#| eval: true
+not age < 18
+```
+:::
+:::
+:::
+
+## Condition A and B need to be satisfied: `&` operator
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+- We can test multiple conditions using the `&` operator
+- The `&` operator returns `True` if both conditions are `True`
+- For example, `5 > 3 & 5 < 10` returns `True`
+
+```{python}
+#| echo: true
+#| eval: true
+# We use the "&" symbol to separate "AND" conditions
+age = 31
+
+# Is this age between 20 and 30 (including these ages)?
+( age >= 20 ) & (age <= 30)
+```
+:::
+
+## Condition A or B needs to be satisfied: `|` operator
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+- To test whether at least one condition is `True`, we use the `|` operator
+- For example, `5 > 3 | 5 > 10` returns `True`
+
+```{python}
+#| echo: true
+#| eval: true
+# We use the "|" symbol to separate "OR" conditions.
+age = 31
+
+# Is this age higher than 20 or lower than 30?
+( age >= 20 ) | (age <= 30)
+```
+
+```{python}
+#| echo: true
+#| eval: true
+# Another example
+student_status = "freshman" 
+
+# Is the student in the first two years of undergrad?
+(student_status == "freshman") | (student_status == "sophomore")
+```
+:::
+
+## Try it out! 🚀 {#sec:question03}
+
+:::{style="margin-top: 30px; font-size: 30px;"}
+- Now, let's test whether you can identify the correct expression
+
+:::{style="margin-top: 30px;"}
+- Write code that checks the following conditions:
+  - Whether age is strictly less than 20, or greater than 30
+  - Not in the age range 25-27 [[Appendix 03]{.button}](#sec:appendix03)
+:::
+:::
+
+# Flow control: conditional statements 🐍 {background-color="#2d4563"}
+
+## Flow control: conditional statements
+### If, elif, else
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Conditional statements are used to make decisions in programming
+- The `if` statement is used to execute a block of code if a condition is `True`
+- The `elif` statement is used to execute a block of code if the first condition is `False` and the second condition is `True`
+- The `else` statement is used to execute a block of code if all other conditions are `False`
+- We use this a lot in data cleaning or data analysis to filter out data!
+:::
+
+:::{.column width="50%"}
+![](figures/if.png){width="70%"}
+:::
+:::
+:::
+
+## If statements
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Test expression
+  - We type "if" followed by a logical condition and the ":" symbol.
+  - The ":" says: run the following command 
+- Body of expression
+  - The "body" of the "if" statement needs to [indented with four spaces](https://www.python.org/dev/peps/pep-0008/#indentation)
+  - You can indent text by pressing the "tab" button in your keyboard.
+
+- If the condition is true, a message will appear.
+- If the condition is false, then nothing happens
+:::
+
+:::{.column width="50%"}
+- The `if` statement syntax is as follows:
+
+```{python}
+#| echo: true
+#| eval: false
+if condition:
+    Body
+```
+
+- Another example:
+
+```{python}
+#| echo: true
+#| eval: true
+# We start by defining a string
+any_questions = "yes"
+
+if any_questions == "yes":
+    print("Need to give more explanations")
+```
+:::
+:::
+:::
+
+## If/else statements
+### When you have two possible outcomes
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column width="50%"}
+- The `else` statement is used to execute a block of code if the condition is `False`
+- The `else` statement is always used in conjunction with the `if` statement
+- The `else` statement syntax is as follows:
+
+```{python}
+#| echo: true
+#| eval: false
+if condition:
+    Body
+else:
+    Body
+```
+:::
+
+:::{.column width="50%"}
+- For example, let's say you want to know whether someone can vote in the US
+  - First, the person needs to be a national
+  - Second, the person needs to be at least 18 years old
+
+```{python}
+#| echo: true
+#| eval: true
+age = 22
+national = False
+
+if national & (age >= 18):
+    print("This person can vote in the US")
+else:
+    print("This person cannot vote in the US")
+```
+:::
+:::
+:::
+
+## Another example
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column width="60%"}
+```{python}
+#| echo: true
+#| eval: false
+# Here we want to change the colour of the histogram 
+# based on a conditional statement
+
+is_graph_red = False
+how_many_classes = np.array([7,1,2,3,3,3,4,5,6])
+
+if is_graph_red:
+    plt.hist(x = how_many_classes, color="red")
+    plt.title("Count of students in each category")
+    plt.xlabel("How many classes are you taking?")
+    plt.show() 
+else:
+    plt.hist(x = how_many_classes, color="purple")
+    plt.title("Count of students in each category")
+    plt.xlabel("How many classes are you taking?")
+    plt.show()
+```
+:::
+
+:::{.column width="40%"}
+- The histogram will be red if `is_graph_red` is `True`, and purple otherwise
+
+```{python}
+#| echo: false
+#| eval: true
+is_graph_red = False
+how_many_classes = np.array([7,1,2,3,3,3,4,5,6])
+
+if is_graph_red:
+    plt.hist(x = how_many_classes, color="red")
+    plt.title("Count of students in each category")
+    plt.xlabel("How many classes are you taking?")
+    plt.show() 
+else:
+    plt.hist(x = how_many_classes, color="purple")
+    plt.title("Count of students in each category")
+    plt.xlabel("How many classes are you taking?")
+    plt.show()
+```
+:::
+:::
+:::
+
+## Try it out! 🚀 {#sec:question04}
+
+:::{style="margin-top: 30px; font-size: 30px;"}
+What happens if ... ? Try the following:
+<br>
+
+- Rerun the above code but change the value of `is_graph_red`.
+- What happens if you set a non-boolean value of `is_graph_red`?
+- Don't include `:`
+- Don't indent the body of the `if` [[Appendix 04]{.button}](#sec:appendix04)
+:::
+
+## If/elif/else statements
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column width="50%"}
+- The last conditional statement is the `elif` statement
+- The `elif` statement is used to execute a block of code if the first condition is `False` and the second condition is `True`
+- It is just like another `if` statement, but it is used when you have more than two possible outcomes
+- The `elif` statement syntax is as follows:
+
+```{python}
+#| echo: true
+#| eval: false
+if condition:
+    Body
+elif condition:
+    Body
+else:
+    Body
+```
+:::
+
+:::{.column width="50%"}
+![](figures/elif.png){width="70%"}
+:::
+:::
+:::
+
+## Example
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+```{python}
+#| echo: true
+#| eval: true
+years_in_program = 1
+
+if years_in_program == 1:
+    print("This student is a freshman")
+elif years_in_program == 2:
+    print("This student is a sophomore")
+elif years_in_program == 3:
+    print("This student is a junior")
+else:
+    print("This student is a senior")
+```
+:::
+
+# And that's it for today! 🎉 {background-color="#2d4563"}
+
+# Questions? 🤔 {background-color="#2d4563"}
+
+## Try this at home! 🏠
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+- Practice writing conditional statements in Python
+
+:::{style="margin-top: 20px;"}
+- Create a variable called "points" with a value between 0 and 100
+- Write a flow with "if", "elif" and "else" to assign the letter grade
+- In the body, store the output in a new variable called "letter_grade"
+- Print the letter grade at the end
+
+![](figures/grading_scale.png){width="100%"}
+
+:::{.callout-important}
+Check that it works by trying different values of "points"!
+:::
+:::
+:::
+
+# Thank you very much and see you next time! 🙏 {background-color="#2d4563"}
+
+## Appendix 01 {#sec:appendix01}
+
+:::{style="margin-top: 30px; font-size: 30px;"}
+
+```{python}
+#| echo: true
+#| eval: true
+colors = ["red","green","yellow","orange"]
+
+"red" in colors
+```
+
+[[Back to the main text]{.button}](#sec:question01)
+:::
+
+## Appendix 02 {#sec:appendix02}
+
+:::{style="margin-top: 30px; font-size: 30px;"}
+
+```{python}
+#| echo: true
+#| eval: true
+x = -1
+
+x**2 + 2*x + 1 == 0
+```
+
+[[Back to the main text]{.button}](#sec:question02)
+:::
+
+## Appendix 03 {#sec:appendix03}
+
+:::{style="margin-top: 30px; font-size: 30px;"}
+Whether age (`age = 31`) is strictly less than 20, or greater than 30
+- Not in the age range 25-27
+
+```{python}
+#| echo: true
+#| eval: true
+age = 31
+
+(age < 20) | (age > 30) 
+
+(age < 25) | (age > 27)
+```
+
+[[Back to the main text]{.button}](#sec:question03)
+:::
+
+## Appendix 04 {#sec:appendix04}
+
+:::{style="margin-top: 30px; font-size: 30px;"}
+What happens if `is_graph_red` is set to `True`?
+
+```{python}
+#| echo: true
+#| eval: true
+is_graph_red = True
+how_many_classes = np.array([7,1,2,3,3,3,4,5,6])
+
+if is_graph_red:
+    plt.hist(x = how_many_classes, color="red")
+    plt.title("Count of students in each category")
+    plt.xlabel("How many classes are you taking?")
+    plt.show() 
+else:
+    plt.hist(x = how_many_classes, color="purple")
+    plt.title("Count of students in each category")
+    plt.xlabel("How many classes are you taking?")
+    plt.show()
+```
+
+[[Back to the main text]{.button}](#sec:question04)
+:::
+
+## Appendix 04 - Continued
+
+:::{style="margin-top: 30px; font-size: 30px;"}
+What happens if you set a non-boolean value of `is_graph_red`?
+
+[It is considered `True` if it is not zero](https://docs.python.org/3/library/stdtypes.html#truth-value-testing)
+
+```{python}
+#| echo: true
+#| eval: true
+is_graph_red = 39
+how_many_classes = np.array([7,1,2,3,3,3,4,5,6])
+
+if is_graph_red:
+    plt.hist(x = how_many_classes, color="red")
+    plt.title("Count of students in each category")
+    plt.xlabel("How many classes are you taking?")
+    plt.show() 
+else:
+    plt.hist(x = how_many_classes, color="purple")
+    plt.title("Count of students in each category")
+    plt.xlabel("How many classes are you taking?")
+    plt.show()
+```
+
+[[Back to the main text]{.button}](#sec:question04)
+:::
+
+## Appendix 04 - Continued
+
+:::{style="margin-top: 30px; font-size: 30px;"}
+What happens if you don't include `:`?
+
+[You will get a syntax error](https://docs.python.org/3/reference/compound_stmts.html#if)
+
+```{python}
+#| echo: true
+#| eval: false
+is_graph_red = True
+how_many_classes = np.array([7,1,2,3,3,3,4,5,6])
+
+if is_graph_red
+    plt.hist(x = how_many_classes, color="red")
+    plt.title("Count of students in each category")
+    plt.xlabel("How many classes are you taking?")
+    plt.show() 
+else:
+    plt.hist(x = how_many_classes, color="purple")
+    plt.title("Count of students in each category")
+    plt.xlabel("How many classes are you taking?")
+    plt.show()
+```
+  
+[[Back to the main text]{.button}](#sec:question04)
+:::
+
+## Appendix 04 - Continued
+
+:::{style="margin-top: 30px; font-size: 30px;"}
+What happens if you don't indent the body of the `if`?
+
+[You will get another syntax error](https://docs.python.org/3/reference/compound_stmts.html#if)
+
+```{python}
+#| echo: true
+#| eval: false
+is_graph_red = True
+how_many_classes = np.array([7,1,2,3,3,3,4,5,6])
+
+if is_graph_red:
+plt.hist(x = how_many_classes, color="red")
+plt.title("Count of students in each category")
+plt.xlabel("How many classes are you taking?")
+plt.show() 
+else:
+plt.hist(x = how_many_classes, color="purple")
+plt.title("Count of students in each category")
+plt.xlabel("How many classes are you taking?")
+plt.show()
+```
+
+[[Back to the main text]{.button}](#sec:question04)
+:::

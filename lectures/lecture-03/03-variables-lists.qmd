@@ -1,0 +1,572 @@
+---
+title: QTM 151 - Introduction to Statistical Computing II
+subtitle: Installing Packages, Variables, and Lists
+date: 09-09-2024
+date-format: "DD MMMM, YYYY"
+author:
+  - name: Danilo Freire
+    orcid: 0000-0002-4712-6810
+    email: danilo.freire@emory.edu
+    affiliations: Emory University
+format:
+  clean-revealjs:
+    self-contained: true
+    footer: "[Variables and Lists](https://raw.githack.com/danilofreire/qtm151/main/lectures/lecture-03/03-variables-lists.html)"
+bibliography: references.bib
+transition: slide
+transition-speed: default
+scrollable: true
+engine: jupyter
+editor:
+  render-on-save: true
+---
+
+# Nice to see you all again! 😊 {background-color="#2d4563"}
+
+# Brief recap 📚 {background-color="#2d4563"}
+
+## In the last lecture, we learned:
+
+:::{style="margin-top: 40px; font-size: 26px;"}
+:::{.columns}
+:::{.column width="50%"}
+- How git and GitHub work
+- Why they are important for reproducibility and collaboration
+- How to fork a repository, clone it, and push changes
+- How to run a Juptyer notebook on your computer
+- How to edit text and code cells
+:::
+
+:::{.column width="50%"}
+- Feel free to email your assignments to me at <danilo.freire@emory.edu>
+- We will mark them and provide feedback on your work
+- Assignment 02 is already online as well :)
+:::
+:::
+:::
+
+# Questions? Please let us know! {background-color="#2d4563"}
+
+## Today's agenda 
+### Installing packages and working with variables and lists
+
+:::{style="margin-top: 30px; font-size: 26px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Python is a versatile programming language, but [it doesn't come with all the tools we need]{.alert}
+- [Packages]{.alert} are collections of functions that [extend Python's capabilities]{.alert}
+- There are thousands of packages available, and we can install them using [conda install]{.alert}
+:::
+
+:::{.column width="50%"}
+- We will also learn about [variables]{.alert} and [lists]{.alert}
+- [Variables are containers]{.alert} that store data values
+- [Lists are collections of items]{.alert} that can be of different types
+- Today, we will learn how to [create, access, and modify variables and lists]{.alert}
+:::
+:::
+:::
+
+# Questions about installing Anaconda and Jupyter? 🐍 {background-color="#2d4563"}
+
+## Installing Packages
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+:::{.columns}
+:::{.column width="50%"}
+- There are several ways to install packages in Python
+- The two most common ways are [pip]{.alert} and [conda]{.alert}
+- [pip]{.alert} is the Python package installer, which comes pre-installed with Python
+- [conda]{.alert} is the package manager that comes with Anaconda, and it is even more user-friendly
+- We will use [conda]{.alert} to install packages in this course
+- You can install packages using the command `conda install package` in the terminal or go to the Anaconda Navigator and install them from there
+:::
+
+:::{.column width="50%"}
+- In Anaconda Navigator, you can search for packages in the "Environments" tab
+- The main packages we will use are:
+  - [numpy]{.alert}: for numerical computing
+  - [pandas]{.alert}: for data manipulation
+  - [matplotlib]{.alert}: for data visualisation
+
+:::{.fragment .fade-in}
+- You should have them installed already, as they come with the base Anaconda installation
+- If not, please try to install them using the Anaconda Navigator
+:::
+:::
+:::
+
+
+:::{.callout-tip}
+- More information on installing packages can be found at <https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-pkgs.html>
+:::
+:::
+
+# {background-image="figures/anaconda-navigator.png"}
+
+# Now let's open Jupyter and start coding! 🚀 {background-color="#2d4563"}
+
+## Creating a new notebook in VS Code
+### It's easier than you think!
+
+:::{style="margin-top: 30px; font-size: 20px;"}
+:::{.columns}
+:::{.column width="50%"}
+- There are two easy ways to create a new notebook in VS Code
+- The first way is to click on "File" > "New File" and save it as a `.ipynb` file
+
+![](figures/vscode-new-file.png){width="50%"}
+:::
+
+:::{.column width="50%"}
+- The other way is to press `Cmmd + Shift + P` and type "Create: New Jupyter Notebook"
+- This is also how you can do many other things in VS Code
+- Then [select the kernel]{.alert} you want to use (`base`)
+
+![](figures/vscode-jupyter.png)
+:::
+:::
+:::
+
+# {background-image="figures/vscode-jupyter02.png"}
+
+# Is everyone ready to start coding? 🤓 {background-color="#2d4563"}
+
+## Loading packages
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+:::{.columns}
+:::{.column width="50%"}
+- The first thing we need to do is to load the packages we installed
+- We can do this using the `import` command
+- For example, to load the `numpy` package, we use `import numpy as np`
+- This command loads the package and assigns it the alias `np`
+- We can then use the functions in the package by typing `np.function()`
+:::
+
+:::{.column width="50%"}
+- Why `np`? Because it is a common alias for `numpy`. You can use any alias you want, but it is good practice to use common ones as they make your code more readable
+- Let's load the `matplotlib` package as well
+- We will use this package to create plots later on
+- To load the `matplotlib` package, we use `import matplotlib.pyplot as plt`
+- Importing only the `pyplot` module instead of the entire matplotlib package allows us to access the plotting functions we need [without importing unnecessary components, which can be more efficient]{.alert}
+:::
+:::
+
+:::{.fragment .fade-in}
+[Let's see how this work in practice!]{.alert}
+:::
+:::
+
+## Loading packages
+
+:::{style="margin-top: 30px; font-size: 26px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Open the [`03-variables-lists.ipynb`](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-03/03-variables-lists.ipynb) notebook in VS Code (or create your own)
+- Select the Python kernel you want to use
+- To execute your code, press `Shift + Enter` or click on the "Run" button
+- If you want to create a new Python cell, press `+ Code` in the toolbar
+:::
+
+:::{.column width="50%"}
+```{python}
+#| echo: true
+#| eval: true
+
+# Load the numpy and matplotlib packages
+import numpy as np
+import matplotlib.pyplot as plt
+```
+
+- If you do not see any errors, you have successfully loaded the packages!
+:::
+:::
+:::
+
+# Variables and data types 📊 {background-color="#2d4563"}
+
+## Variables
+### A container that stores data values
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Variables can be of different types, such as:
+  - [integers]{.alert}: whole numbers
+  - [floats]{.alert}: numbers with decimals
+  - [strings]{.alert}: text
+  - [booleans]{.alert}: True or False
+:::
+
+:::{.column width="50%"}
+- We identify the type of a variable using the `type()` function
+- We can use the `print()` function to display the value of a variable
+
+```{python}
+#| echo: true
+#| eval: true
+
+type(3)
+type(3.5)
+
+print(type(3))
+print(type(3.5))
+print(type("Danilo's car"))
+print(type(True))
+
+# You can define strings using single or double quotes
+type("hello")
+```
+:::
+:::
+:::
+
+## Store variables in memory {#sec-movie}
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+:::{.columns}
+:::{.column width="50%"}
+- We can store variables in memory using the assignment operator `=`
+- For example, to store the value `3` in the variable `x`, we use `x = 3`
+- We can then access the value of `x` by typing `x`
+- [Please note:]{.alert} 
+  - Variable names are case-sensitive
+  - Variable names cannot start with a number
+  - Variable names cannot contain spaces
+  - Variable names cannot contain special characters, except for `_`
+
+- Click "Variables" in the top panel of Jupyter Notebooks
+- Install the [Data Wranger](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.datawrangler) extension to see the values of your variables
+:::
+
+:::{.column width="50%"}
+```{python}
+#| echo: true
+#| eval: true
+
+number3 = 3
+number3andhalf = 3.5
+message_hello = "hello"
+
+number3
+```
+
+```{python}
+#| echo: true
+#| eval: true
+
+# Use the print function to display the value of a variable
+print(number3)
+print(number3andhalf)
+```
+
+- Now try it yourself! Create a variable with your favourite movie [[Appendix 01]{.button}](#sec-appendix01)
+:::
+:::
+:::
+
+## Basic operations with variables {#sec-major}
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+:::{.columns}
+:::{.column width="50%"}
+- We can perform basic operations with variables:
+- [Addition]{.alert}: `+`, [Subtraction]{.alert}: `-`, [Multiplication]{.alert}: `*`, [Division]{.alert}: `/`, [Exponentiation]{.alert}: `**`
+- If you try this on a [string it will not work]{.alert}
+  - Try it! Type `print("QTM" + 151)`
+
+```{python}
+#| echo: true
+#| eval: true
+print(3*2)
+print(3+2)
+print(3-2)
+print(3/2)
+print(3**2)
+```
+:::
+
+:::{.column width="50%"}
+- Use parentheses for [order of operations]{.alert}
+
+```{python}
+#| echo: true
+#| eval: true
+
+(3 + 4) / 5
+```
+
+```{python}
+#| echo: true
+#| eval: true
+(number3 + 4)/5
+```
+- [Concatenation]{.alert} "adds" two strings:
+
+```{python}
+#| echo: true
+#| eval: true
+
+name = str("Danilo")
+
+"My name is" + " "  + name
+```
+
+- Try it yourself! Define a variable with your name,  define a new variable with your major, and print a concantenated string with your name and major [[Appendix 02]{.button}](#sec-appendix02)
+:::
+:::
+:::
+
+# Lists 📝 {background-color="#2d4563"}
+
+## Lists
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Lists are collections of items
+- We can store different types of items in a list
+- Lists are always enclosed in square brackets `[]`
+- Elements are separated by commas `,`
+- We can access elements in a list using their index
+- [Indexes start at 0]{.alert}
+:::
+
+:::{.column width="50%"}
+```{python}
+#| echo: true
+#| eval: true
+# List of numbers
+list_numbers = [1,2,3,4,5]
+list_numbers_sqr = [1,4,9,16,25]
+print(list_numbers)
+print(type(list_numbers))
+```
+
+```{python}
+#| echo: true
+#| eval: true
+
+# List with strings
+# Example: Suppose you ask 5 people about their favorite colour. 
+# The results:
+list_colours = ["red","yellow","yellow", "green","red"]
+print(list_colours)
+
+# List with mixed types
+list_mixed = ["red",1,"yellow",4,5, 3.5]
+
+# Lists can be nested too
+another_list = [list_mixed, 3, 'h']
+```
+:::
+:::
+:::
+
+## Extracting elements from a list {#sec-extracting-elements}
+### Remember, indexes start at 0! (Yes, it's annoying!)
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Use square brackets `[]` to access elements in a list
+- For instance, to access the first element in a list, we use `list[0]`
+
+```{python}
+#| echo: true
+#| eval: true
+floors_england = ["ground", "floor1", "floor2"]
+
+floors_england[0]
+floors_england[1]
+```
+
+```{python}
+#| echo: true
+#| eval: true
+print(another_list)
+print(another_list[0])
+
+print(another_list[0][2]) # What will this return? And why?
+```
+:::
+
+:::{.column width="50%"}
+- Now try it yourself! 
+- Create a list with your three favourite movies and print the last one [[Appendix 03]{.button}](#sec-appendix03)
+:::
+:::
+:::
+
+# Visualising data with matplotlib 📊 {background-color="#2d4563"}
+
+## Visualising lists with histograms {#sec-histogram}
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+:::{.columns}
+:::{.column width="50%"}
+- We can use the `matplotlib` package to create plots
+- The `hist()` function creates a histogram
+- We can pass a list as an argument to the `hist()` function
+- We can also customise the plot by adding labels, titles, and changing the colour (more on that later)
+- You print the graph by using the `show()` function
+
+<br>
+
+- Try it yourself! 
+- Create a list with repeated string values and compute your own histogram [[Appendix 04]{.button}](#sec-appendix04)
+:::
+
+:::{.column width="50%"}
+```{python}
+#| echo: true
+#| eval: true
+
+# Create a new list
+list_list = list_colours + ['red']
+print(list_list)
+
+# Create a histogram of the list of numbers
+plt.hist(x = list_list)
+plt.show()
+```
+:::
+:::
+:::
+
+## Scatter plots
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+:::{.columns}
+:::{.column width="50%"}
+- We can also create scatter plots using the `scatter()` function
+- The `scatter()` function takes two lists as arguments
+  - The first list contains the x-coordinates
+  - The second list contains the y-coordinates
+- We use them to visualise the relationship between two continuous variables
+- Here, we will use the `xlabel()` and `ylabel()` functions to label the axes
+:::
+
+:::{.column width="50%"}
+```{python}
+#| echo: true
+#| eval: true
+print(list_numbers)
+print(list_numbers_sqr)
+
+# Create a scatter plot
+plt.scatter(x = list_numbers, y = list_numbers_sqr)
+plt.xlabel("A meaningful name for the X-axis") 
+plt.ylabel("Favourite name for Y-axis") 
+plt.show()
+```
+:::
+:::
+:::
+
+## Scatter plots {#sec-scatter}
+
+:::{style="margin-top: 30px; font-size: 26px;"}
+- Try it yourself!
+- Create two lists with numbers, then create your own scatter plot [[Appendix 05]{.button}](#sec-appendix05)
+:::
+
+# And that's it for today! 🎉 {background-color="#2d4563"}
+
+## Summary
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Today we larned to:
+  - Install packages using `conda install`
+  - Load packages using the `import` command
+  - Create variables and lists
+  - Access and modify variables and lists
+  - Create histograms and scatter plots using the `matplotlib` package
+:::
+
+:::{.column width="50%"}
+- In our next lecture, we will learn how to:
+  - Solve mathematical problems using `numpy`
+  - Generate random numbers
+  - (Maybe) do some matrix operations
+:::
+:::
+:::
+
+# Questions? 🤔 {background-color="#2d4563"}
+
+# See you next time! 🚀 {background-color="#2d4563"}
+
+## Appendix 01 {#sec-appendix01}
+### Create a variable with your favourite movie 
+
+```{python}
+#| echo: true
+#| eval: true
+movie = "The Godfather"
+```
+
+[[Back to the main text]{.button}](#sec-movie)
+
+## Appendix 02 {#sec-appendix02}
+### Define a variable with your name and major
+
+```{python}
+#| echo: true
+#| eval: true
+name = "Danilo"
+major = "QSS"
+
+print("My name is " + name + " and I am majoring in " + major)
+```
+
+[[Back to the main text]{.button}](#sec-major)
+
+## Appendix 03 {#sec-appendix03}
+### Create a list with your three favourite movies 
+
+```{python}
+#| echo: true
+#| eval: true
+movies = ["The Godfather", "The Godfather II", "The Godfather III"]
+print(movies[2])
+```
+
+[[Back to the main text]{.button}](#sec-extracting-elements)
+
+## Appendix 04 {#sec-appendix04}
+### Create a list with repeated string values and compute your own histogram
+
+:::{style="font-size: 24px;"}
+```{python}
+#| echo: true
+#| eval: true
+favourite_books = ["The Odyssey", "Don Quijote", "The Illiad", "The Odyssey", "The Illiad", "The Illiad"]
+plt.hist(x = favourite_books)
+plt.show()
+```
+:::
+
+[[Back to the main text]{.button}](#sec-histogram)
+
+## Appendix 05 {#sec-appendix05}
+### Create two lists with numbers, then create your own scatter plot
+
+:::{style="font-size: 24px;"}
+```{python}
+#| echo: true
+#| eval: true
+list_x = [5, 10, 15, 20, 25]
+list_y = [10, 20, 30, 40, 50]
+
+plt.scatter(x = list_x, y = list_y)
+plt.xlabel("X-axis")
+plt.ylabel("Y-axis")
+plt.show()
+```
+:::
+
+[[Back to the main text]{.button}](#sec-scatter)
