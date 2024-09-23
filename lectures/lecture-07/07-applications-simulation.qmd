@@ -1,0 +1,704 @@
+---
+title: QTM 151 - Introduction to Statistical Computing II
+subtitle: "Lecture 07 - Applications 01: Simulation"
+date: 2024-09-23
+date-format: "DD MMMM, YYYY"
+author:
+  - name: Danilo Freire
+    email: danilo.freire@emory.edu
+    affiliations: Emory University
+format:
+  clean-revealjs:
+    self-contained: true
+    footer: "[Simulation](https://danilofreire.github.io/)"
+transition: slide
+transition-speed: default
+scrollable: true
+engine: jupyter
+editor:
+  render-on-save: true
+---
+
+# Welcome back! Nice to see you all! 😊 {background-color="#2d4563"}
+
+# Brief recap of last class 📚 {background-color="#2d4563"}
+
+## Last class we covered:
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column width="50%"}
+- `None` as a placeholder or missing value in lists
+- Replacing values in lists using indexing: `list[0] = value`
+- How to use `list.append()` and `list.extend()` to add elements to a list
+- Expanding lists with the `*` operator: `list = [1, 2, 3] * 2`
+- Concatenating lists with the `+` operator: `list1 + list2`
+- How to write a `for` loop to iterate over a list
+
+```{python}
+#| echo: true
+#| eval: false
+for item in list:
+    do something
+```
+:::
+
+:::{.column width="50%"}
+![](../lecture-06/figures/for-loops.png)
+:::
+:::
+:::
+
+## Today's plan 
+### We will learn to:
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Use random numbers and simulations to solve problems
+- Draw random samples from different distributions
+- Create subplots to compare different simulations
+- Write nested loops
+- (Time permitting/at home) Write `for` loops with `if` statements
+:::
+  
+:::{.column width="50%"}
+![](figures/monte-carlo.gif)
+:::
+:::
+:::
+
+# Visualisation of random variables 🎲 {background-color="#2d4563"}
+
+## Simulate different distributions
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column width="50%"}
+- We can use random numbers to simulate different distributions
+- As we saw before, we can use the `random` module to generate random numbers
+- We combine the random numbers generator with a `numpy` function to simulate different distributions (as we did with the normal distribution)
+- `np.random.distribution_name(parameters)`: normal, uniform, binomial, chi-square, etc.
+- More information about the function can be found in the [numpy documentation](https://numpy.org/doc/stable/reference/random/generator.html#distributions)
+:::
+
+:::{.column width="50%"}
+- Consider a sample with $n$ observations
+
+:::{style="margin-top: 40px; font-size: 24px; text-align: center;"}
+$X = \begin{pmatrix} X_1 \\ X_2 \\ \vdots \\ X_n \end{pmatrix}$
+:::
+
+:::{style="margin-top: 70px;"}
+- First, we need to import the necessary packages, then we can simulate the random variables
+:::
+:::
+:::
+:::
+
+## Simulate different distributions
+
+:::{style="margin-top: 30px; font-size: 23px;"}
+```{python}
+#| echo: true
+#| eval: true 
+# Import necessary packages
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+
+# Set seed for reproducibility
+np.random.seed(151)
+
+# Sample size
+n = 10000 
+
+# Simulate random variables
+vec_normal = np.random.normal(loc = 7, scale = 5, size = n)
+vec_chisqr = np.random.chisquare(df = 1, size = n)
+vec_unif   = np.random.uniform(low = -3,high = 5, size = n)
+
+# Check their means
+print("Normal mean: " + str(np.mean(vec_normal)))
+print("Chi-square mean: " + str(np.mean(vec_chisqr)))
+print("Uniform mean: " + str(np.mean(vec_unif)))
+```
+:::
+
+# Multiple plots in the same figure 📊 {background-color="#2d4563"}
+
+## Create subplots
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+- We can create multiple plots in the same figure using the `plt.subplots()` function
+- This function returns a figure and an array of axes
+  - `fig, ax = plt.subplots(nrows, ncols)`
+- You can use any name instead of `fig` or `ax` (e.g., `my_figures`, `axs` (preferred over `axes` to avoid confusion), `list_subfig`, etc)
+- `nrows` is the number of rows of subplots
+- `ncols` is the number of columns of subplots
+- You can then plot on each axis using the `plot()` function, as you would with a single plot
+
+:::{style="margin-top: 30px;"}
+- More information can be found in the [matplotlib documentation](https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.subplots.html)
+:::
+:::
+
+## Create subplots
+### Let's explain the code line-by-line
+
+:::{style="margin-top: 30px; font-size: 21px;"}
+```{python}
+#| echo: true
+#| eval: false
+#| code-line-numbers: "|5|8|11|14-17|20-24"
+# Create a plot with 1 row, 2 columns
+# You will create a list of subfigures "list_subfig"
+# You can choose whichever name you like
+# The option "figsize" indicates the (width,height) of the graph in inches
+fig, list_subfig = plt.subplots(1, 2, figsize = (10, 3))
+
+# The tight layout option ensures that the axes are not overlapping
+plt.tight_layout()
+
+# Adjust the spacing between subplots
+plt.subplots_adjust(wspace=0.3)  # Adjust the value as needed
+
+# First Figure
+list_subfig[0].hist(x = vec_normal)
+list_subfig[0].set_title("Normal Distribution")
+list_subfig[0].set_xlabel("Value")
+list_subfig[0].set_ylabel("Frequency")
+
+# Second Figure
+list_subfig[1].hist(x = vec_unif)
+list_subfig[1].set_title("Uniform Distribution")
+list_subfig[1].set_xlabel("Value")
+list_subfig[1].set_ylabel("Frequency")
+plt.show()
+```
+:::
+
+## Create subplots
+### Let's see the output
+
+:::{style="margin-top: 30px; font-size: 23px;"}
+```{python}
+#| echo: false
+#| eval: true
+fig, list_subfig = plt.subplots(1, 2, figsize = (10, 3))
+
+# The tight layout option ensures that the axes are not overlapping
+plt.tight_layout()
+
+# Adjust the spacing between subplots
+plt.subplots_adjust(wspace=0.3)  # Adjust the value as needed
+
+# First Figure
+list_subfig[0].hist(x = vec_normal)
+list_subfig[0].set_title("Normal Distribution")
+list_subfig[0].set_xlabel("Value")
+list_subfig[0].set_ylabel("Frequency")
+
+# Second Figure
+list_subfig[1].hist(x = vec_unif)
+list_subfig[1].set_title("Uniform Distribution")
+list_subfig[1].set_xlabel("Value")
+list_subfig[1].set_ylabel("Frequency")
+plt.show()
+```
+:::
+
+## Try it yourself! {#sec:exercise-01}
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+- Do a version with three plots in the same row
+- What happens if you remove the "plt.tight_layout()" command?
+- What happens if you change the "figsize"? 
+- [[Appendix 01]{.button}](#sec:appendix-01)
+:::
+
+## Create sequences of numbers
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+:::{.columns}
+:::{.column width="50%"}
+- We use `list(range(start, stop, step))` to create a sequence of numbers
+- `start` is the first number in the sequence
+- `stop` is the last number in the sequence ([not included]{.alert})
+- `step` is the difference between each number in the sequence
+- If `start` is not provided, it defaults to 0
+- For example, `list(range(1, 10, 2))` will create the list `[1, 3, 5, 7, 9]`
+- More information can be found in the [Python documentation](https://docs.python.org/3/library/functions.html#func-range)
+:::
+
+:::{.column width="50%"}
+- This design choice is intentional and follows the principle of half-open intervals (includes the start value but excludes the stop value), which is common in computer science
+- Since Python's index starts at 0, this design choice makes it easier to work with lists and arrays. For instance, `list[0:3]` will return the first three elements of the list
+- Here are some examples:
+
+```{python}
+#| echo: true
+#| eval: true
+# [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+print(list(range(10)))  
+
+# [1, 3, 5, 7, 9]
+print(list(range(1, 10, 2)))  
+
+# [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
+print(list(range(10, 0, -1)))  
+```
+:::
+:::
+:::
+
+## Try it yourself! {#sec:exercise-02}
+### An easy one
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+- Use `list(range())` to create the following lists:
+  - Create a list with the numbers from 0 to 9
+  - Create a list with the odd numbers from 1 to 9
+- We will use the `range()` function in other ways soon
+- [[Appendix 02]{.button}](#sec:appendix-02)
+:::
+
+# Nested loops 🔄 {background-color="#2d4563"}
+
+## Nested loops
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column width="50%"}
+- We can [nest loops inside each other]{.alert} to iterate over multiple dimensions 🤯
+- The inner loop runs to completion for each iteration of the outer loop
+- This is useful when we need to iterate over a matrix or a list of lists
+- The syntax is simple: [just write a loop inside another loop](https://www.w3schools.com/python/python_nested_loops.asp)
+- The inner loop is indented twice: once for the outer loop and once for the inner loop
+- For example: 
+
+```{python}
+#| echo: true
+#| eval: false
+for i in range(3):
+    for j in range(2):
+        print(f"i = {i}, j = {j}")
+```
+:::
+
+:::{.column width="50%"}
+- This will print:
+
+```{python}
+#| echo: false
+#| eval: true
+for i in range(3):
+    for j in range(2):
+        print(f"i = {i}, j = {j}")
+```
+- Why does it print this way?
+:::
+:::
+:::
+
+# Using simulations to solve statistical problems 🎲 {background-color="#2d4563"}
+
+## The central limit theorem
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column width="50%"}
+- The [central limit theorem (CLT)](https://en.wikipedia.org/wiki/Central_limit_theorem) is a fundamental concept in statistics
+- It states that the distribution of the mean (or sum) of a large number of independent, identically distributed random variables approaches a normal distribution, regardless of the original distribution
+- This is true even if the original distribution is not normal
+
+![](figures/clt.gif){width="60%"}
+:::
+
+:::{.column width="50%"}
+- The larger the sample size, the closer the distribution of the sample mean is to a normal distribution
+- We can simulate that using random numbers and "prove" the CLT
+- Let's simulate the CLT using the uniform distribution
+:::
+:::
+:::
+
+## The central limit theorem
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+```{python}
+#| echo: true
+#| eval: true
+# One way is to write this with repeated code chunks
+# Each time will start the process of generating new data from scratch.
+
+num_simulations = 2000
+
+# Simulate with sample size one
+sample_size = 1
+vec_xbar = [None] * num_simulations
+for iteration in range(num_simulations):
+    vec_unif  = np.random.uniform(low = -2, high=2, size = sample_size)
+    vec_xbar[iteration] = vec_unif.mean()
+plt.hist(vec_xbar)
+plt.title("Distribution of Xbar with size 1")
+plt.ylabel("Frequency")
+plt.xlabel("Values of Xbar")
+plt.show()
+```
+:::
+
+## The central limit theorem
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+```{python}
+#| echo: true
+#| eval: true
+# Simulate with sample size 10
+sample_size = 10
+vec_xbar = [None] * num_simulations
+for iteration in range(num_simulations):
+    vec_unif  = np.random.uniform(low = -2, high=2, size = sample_size)
+    vec_xbar[iteration] = vec_unif.mean()
+plt.hist(vec_xbar)
+plt.title("Distribution of Xbar with size 10")
+plt.ylabel("Frequency")
+plt.xlabel("Values of Xbar")
+plt.show()
+```
+:::
+
+## The central limit theorem
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+```{python}
+#| echo: true
+#| eval: true
+# Simulate with sample size 50
+sample_size = 50
+vec_xbar = [None] * num_simulations
+for iteration in range(num_simulations):
+    vec_unif  = np.random.uniform(low = -2, high=2, size = sample_size)
+    vec_xbar[iteration] = vec_unif.mean()
+plt.hist(vec_xbar)
+plt.title("Distribution of Xbar with size 50")
+plt.ylabel("Frequency")
+plt.xlabel("Values of Xbar")
+plt.show()
+```
+:::
+
+## Hmm... wait a minute! {#sec:exercise-03}
+### A technical side note
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+- Why do we have to use `range(num_simulations)` here and not just `num_simulations`? 🤔
+- Let's see what happens if we use `num_simulations` instead (error!)
+- Can anyone explain the difference between the two? [[Appendix 03]{.button}](#sec:appendix-03)
+```{python}
+#| echo: true
+#| eval: false
+# Simulate with sample size 100
+sample_size = 100
+vec_xbar = [None] * num_simulations
+for iteration in num_simulations:
+    vec_unif  = np.random.uniform(low = -2, high=2, size = sample_size)
+    vec_xbar[iteration] = vec_unif.mean()
+plt.hist(vec_xbar)
+plt.title("Distribution of Xbar with size 100")
+plt.ylabel("Frequency")
+plt.xlabel("Values of Xbar")
+plt.show()
+```
+
+```{verbatim}
+An error occurred while executing the following cell:
+------------------
+# Simulate with sample size 100
+sample_size = 100
+vec_xbar = [None] * num_simulations
+for iteration in num_simulations:
+    vec_unif  = np.random.uniform(low = -2, high=2, size = sample_size)
+    vec_xbar[iteration] = vec_unif.mean()
+plt.hist(vec_xbar)
+plt.title("Distribution of Xbar with size 100")
+plt.ylabel("Frequency")
+plt.xlabel("Values of Xbar")
+plt.show()
+------------------
+
+
+---------------------------------------------------------------------------
+TypeError                                 Traceback (most recent call last)
+Cell In[10], line 4
+      2 sample_size = 100
+      3 vec_xbar = [None] * num_simulations
+----> 4 for iteration in num_simulations:
+      5     vec_unif  = np.random.uniform(low = -2, high=2, size = sample_size)
+      6     vec_xbar[iteration] = vec_unif.mean()
+
+TypeError: 'int' object is not iterable
+```
+:::
+
+## Now back to the simulation
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+- We can see that the distribution of the sample mean approaches a normal distribution as the sample size increases
+- But we can make the code more efficient by using nested loops
+- We can write a loop to simulate the sample mean for different numbers of simulations
+- The, we write another loop to simulate the sample means
+:::
+
+## Nested loops
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+```{python}
+#| echo: true
+#| eval: true
+num_simulations = 2000
+sample_size_list = [1,10,50,100,200]
+
+for sample_size in sample_size_list:
+
+    # The following command a vector null values, of length "num_simulations"
+    vec_xbar = [None] * num_simulations
+    
+    for iteration in range(num_simulations):
+            vec_unif  = np.random.uniform(low = -2, high=2, size = sample_size)
+            vec_xbar[iteration] = vec_unif.mean()
+    plt.hist(vec_xbar)
+    plt.title("Distribution of Xbar when n is " + str(sample_size))
+    plt.ylabel("Frequency")
+    plt.xlabel("Values of Xbar")
+    plt.show()
+```
+:::
+
+## Try it yourself! {#sec:exercise-04}
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+- Repeat the above simulation with a few changes
+- Use a Chi-square distribution with (df = 1) instead of a normal
+- [[Appendix 04]{.button}](#sec:appendix-04)
+:::
+
+## Try it yourself! {#sec:exercise-05}
+### Last one! 😅
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+- Write code that puts all the figures in the same row
+- [[Appendix 05]{.button}](#sec:appendix-05)
+:::
+
+# And that's it for today! 🎉 {background-color="#2d4563"}
+
+# Thank you for your attention! 🙏 {background-color="#2d4563"}
+
+## Appendix 01 {#sec:appendix-01}
+### Three plots in the same row
+
+:::{style="margin-top: 30px; font-size: 21px;"}
+```{python}
+#| echo: true
+#| eval: true
+fig, list_subfig = plt.subplots(1, 3, figsize = (15, 3))
+
+# The tight layout option ensures that the axes are not overlapping
+plt.tight_layout()
+
+# Adjust the spacing between subplots
+plt.subplots_adjust(wspace=0.3)  # Adjust the value as needed
+
+# First Figure
+
+list_subfig[0].hist(x = vec_normal)
+list_subfig[0].set_title("Normal Distribution")
+list_subfig[0].set_xlabel("Value")
+list_subfig[0].set_ylabel("Frequency")
+
+# Second Figure
+list_subfig[1].hist(x = vec_unif)
+list_subfig[1].set_title("Uniform Distribution")
+list_subfig[1].set_xlabel("Value")
+list_subfig[1].set_ylabel("Frequency")
+
+# Third Figure
+list_subfig[2].hist(x = vec_chisqr)
+list_subfig[2].set_title("Chi-square Distribution")
+list_subfig[2].set_xlabel("Value")
+list_subfig[2].set_ylabel("Frequency")
+plt.show()
+```
+
+[[Back to exercise]{.button}](#sec:exercise-01)
+:::
+
+## Appendix 01 
+### What happens if you remove the "plt.tight_layout()" command?
+
+:::{style="margin-top: 30px; font-size: 21px;"}
+```{python}
+#| echo: true
+#| eval: true
+fig, list_subfig = plt.subplots(1, 3, figsize = (15, 3))
+
+# Adjust the spacing between subplots
+plt.subplots_adjust(wspace=0.3)  # Adjust the value as needed
+
+# First Figure
+list_subfig[0].hist(x = vec_normal)
+list_subfig[0].set_title("Normal Distribution")
+list_subfig[0].set_xlabel("Value")
+list_subfig[0].set_ylabel("Frequency")
+
+# Second Figure
+list_subfig[1].hist(x = vec_unif)
+list_subfig[1].set_title("Uniform Distribution")
+list_subfig[1].set_xlabel("Value")
+list_subfig[1].set_ylabel("Frequency")
+
+# Third Figure
+list_subfig[2].hist(x = vec_chisqr)
+list_subfig[2].set_title("Chi-square Distribution")
+list_subfig[2].set_xlabel("Value")
+list_subfig[2].set_ylabel("Frequency")
+plt.show()
+```
+
+[[Back to exercise]{.button}](#sec:exercise-01)
+:::
+
+## Appendix 01 
+### What happens if you change the "figsize"?
+
+:::{style="margin-top: 30px; font-size: 19px;"}
+```{python}
+#| echo: true
+#| eval: true
+fig, list_subfig = plt.subplots(1, 3, figsize = (10, 3))
+
+# The tight layout option ensures that the axes are not overlapping
+plt.tight_layout()
+
+# Adjust the spacing between subplots
+plt.subplots_adjust(wspace=0.3)  # Adjust the value as needed
+
+# First Figure
+list_subfig[0].hist(x = vec_normal)
+list_subfig[0].set_title("Normal Distribution")
+list_subfig[0].set_xlabel("Value")
+list_subfig[0].set_ylabel("Frequency")
+
+# Second Figure
+list_subfig[1].hist(x = vec_unif)
+list_subfig[1].set_title("Uniform Distribution")
+list_subfig[1].set_xlabel("Value")
+list_subfig[1].set_ylabel("Frequency")
+
+# Third Figure
+list_subfig[2].hist(x = vec_chisqr)
+list_subfig[2].set_title("Chi-square Distribution")
+list_subfig[2].set_xlabel("Value")
+list_subfig[2].set_ylabel("Frequency")
+plt.show()
+```
+
+[[Back to exercise]{.button}](#sec:exercise-01)
+:::
+
+## Appendix 02 {#sec:appendix-02}
+### Create a list with the numbers from 0 to 9
+
+:::{style="margin-top: 30px; font-size: 21px;"}
+
+```{python}
+#| echo: true
+#| eval: true
+print(list(range(10)))
+
+print(list(range(1, 10, 2)))
+```
+[[Back to exercise]{.button}](#sec:exercise-02)
+:::
+
+## Appendix 03 {#sec:appendix-03}
+### Why do we have to use `range(num_simulations)` here?
+
+:::{style="margin-top: 30px; font-size: 21px;"}
+- The reason why we have to use `range(num_simulations)` is that the `for` loop expects an iterable object
+- If we use `num_simulations`, which is an integer (2000), we will get a `TypeError` because an integer is not iterable
+- Python sees the variable as only the number 2000, [not a range of numbers from 0 to 2000]{.alert}
+- Therefore, the `for` loop will not work as expected and we need to use `range(num_simulations)` to iterate over the numbers from 0 to 1999
+- Is it clear now? 🤓
+
+[[Back to exercise]{.button}](#sec:exercise-03)
+:::
+
+## Appendix 04 {#sec:appendix-04}
+### Repeat the simulation with a Chi-square distribution with df = 1
+
+:::{style="margin-top: 30px; font-size: 21px;"}
+
+```{python}
+#| echo: true
+#| eval: true
+num_simulations = 2000
+sample_size_list = [1,10,50,100,200]
+
+for sample_size in sample_size_list:
+
+    # The following command a vector null values, of length "num_simulations"
+    vec_xbar = [None] * num_simulations
+    
+    for iteration in range(num_simulations):
+            vec_chisqr  = np.random.chisquare(df = 1, size = sample_size)
+            vec_xbar[iteration] = vec_chisqr.mean()
+    plt.hist(vec_xbar)
+    plt.title("Distribution of Xbar when n is " + str(sample_size))
+    plt.ylabel("Frequency")
+    plt.xlabel("Values of Xbar")
+    plt.show()
+```
+
+[[Back to exercise]{.button}](#sec:exercise-04)
+:::
+
+## Appendix 05 {#sec:appendix-05}
+### Put all the figures in the same row
+
+:::{style="margin-top: 30px; font-size: 20px;"}
+```{python}
+#| echo: true
+#| eval: true
+fig, list_subfig = plt.subplots(1, 5, figsize = (20, 3))
+
+# The tight layout option ensures that the axes are not overlapping
+plt.tight_layout()
+
+# Adjust the spacing between subplots
+plt.subplots_adjust(wspace=0.3)  # Adjust the value as needed
+
+# Start the loop
+num_simulations = 2000
+sample_size_list = [1,10,50,100,200]
+
+index = 0
+for sample_size in sample_size_list:
+
+    # The following command a vector null values, of length "num_simulations"
+    vec_xbar = [None] * num_simulations
+    
+    for iteration in range(num_simulations):
+            vec_chisqr  = np.random.chisquare(df = 1, size = sample_size)
+            vec_xbar[iteration] = vec_chisqr.mean()
+    list_subfig[index].hist(vec_xbar)
+    list_subfig[index].set_title("Distribution of Xbar when n is " + str(sample_size))
+    list_subfig[index].set_ylabel("Frequency")
+    list_subfig[index].set_xlabel("Values of Xbar")
+    index = index + 1
+    plt.show()
+```
+  
+[[Back to exercise]{.button}](#sec:exercise-05)
+:::

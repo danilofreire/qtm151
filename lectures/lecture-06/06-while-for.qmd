@@ -1,0 +1,686 @@
+---
+title: QTM 151 - Introduction to Statistical Computing II
+subtitle: Lecture 06 - For Loops
+date: 2024-09-18
+date-format: "DD MMMM, YYYY"
+author:
+  - name: Danilo Freire
+    email: danilo.freire@emory.edu
+    affiliations: Emory University
+format:
+  clean-revealjs:
+    self-contained: true
+    footer: "[For Loops](https://raw.githack.com/danilofreire/qtm151/main/lectures/lecture-06/06-while-for.html)"
+transition: slide
+transition-speed: default
+scrollable: true
+engine: jupyter
+editor:
+  render-on-save: true
+---
+
+# And here we go again! Nice to see you all! 😊 {background-color="#2d4563"}
+
+# Brief recap of last class 📚 {background-color="#2d4563"}
+
+## Last class we covered:
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Boolean operators: `&` and `|`
+  - `&` is the logical AND operator: both conditions must be true
+  - `|` is the logical OR operator: at least one condition must be true
+- `if` statements: conditional execution
+  - `if` statements allow you to execute a block of code only if a condition is true
+- `else` statements: alternative execution
+  - `else` statements allow you to execute a block of code if the condition is false
+- `elif` statements: multiple conditions
+  - `elif` statements allow you to check multiple conditions
+:::
+
+:::{.column width="50%"}
+![](../lecture-05/figures/elif.png)
+:::
+:::
+:::
+
+## Something that kept me thinking last class {#sec:thinking}
+### Was it `&` or `|`? 🤔 
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Do you remember this exercise from last class?
+  - Check whether age (`age = 31`) is strictly less than 20, or greater than 30 
+  - Not in the age range 25-27
+
+- The first answer was (and we agreed):
+```{python}
+#| echo: true
+#| eval: false
+age = 31
+
+(age < 20) | (age > 30) 
+```
+:::
+
+:::{.column width="50%"}
+:::{.fragment .fade-in}
+- The original answer for the second part was:
+```{python}
+#| echo: true
+#| eval: false
+(age < 25) | (age > 27)
+```
+
+- But in class we thought the answer should be:
+
+```{python}
+#| echo: true
+#| eval: false
+(age < 25) & (age > 27)
+```
+
+- However, [the original answer was indeed correct!]{.alert} 🤯
+- Can you guys explain why? 🤔 
+- [[Appendix 01]{.button}](#sec:appendix01)
+:::
+:::
+:::
+:::
+
+## Today's plan 📋
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Today, we will talk about
+  - Manipulation of lists
+  - `None` to create empty lists
+  - `list.append()` method to add elements to a list
+  - `for` loops, a useful tool to iterate over lists
+  - How to use `for` loops to create multiple graphs
+:::
+
+:::{.column width="50%"}
+![](figures/for-loops.png)
+:::
+:::
+:::
+
+# A bit more about lists in Python 📝 {background-color="#2d4563"}
+
+## Lists with blank elements
+### How to create an empty list?
+
+:::{style="margin-top: 30px; font-size: 20px;"}
+- You can create an empty list using the `None` object
+- `None` is a special object in Python that represents the absence of a value
+- The type of None is NoneType. It is the only instance of this type
+- `None` is often used to represent missing values or, in our case today, placeholders
+- Please note that `None` is not the same as `0`, `False`, or an empty string `''`
+- You should also not use quotes with `None`, as [it is not a string]{.alert}
+- Let's see how to create an empty list using `None`:
+
+```{python}
+#| echo: true
+#| eval: true
+# Simply type "None"
+list_answers = [None,None,None]
+print(list_answers)
+```
+
+:::{.callout-note}
+You can read more about `None` at <https://realpython.com/null-in-python/>.
+:::
+:::
+
+## Assigning or replacing values to lists
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+- You can assign or replace values in a list using the index of the element
+- The index of a list starts at 0
+- We use the following syntax:
+
+```{python}
+#| echo: true
+#| eval: true
+# What's the name of your hometown?
+list_answers[0] = "Nashville"
+
+print(list_answers)
+```
+:::
+
+## Appending values to lists
+### The `list.append()` method
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+- You can add elements to a list using the `list.append()` command
+- This command adds the element to [the end of the list]{.alert}
+- You can only add [one element at a time]{.alert}
+
+```{python}
+#| echo: true
+#| eval: true
+# We can start an empty list with []
+# Use the command "new_list.append(item)" with the function "append()"
+# and an arbitrary value of "item"
+
+new_list = []
+new_list.append("Nashville")
+new_list.append("Bogota")
+# new_list.append()
+
+print(new_list)
+```
+:::
+
+## Extending lists
+### The `list.extend()` method
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+- You can also add multiple elements to a list using the `list.extend()` command
+- Here you can add [multiple elements at once]{.alert}
+
+```{python}
+#| echo: true
+#| eval: true 
+my_list = ["Nashville", "Bogota"]
+my_list.extend(["Atlanta", "São Paulo", "Rio de Janeiro"])
+print(my_list)
+```
+:::
+ 
+
+# Lists with repetition 🔄 {background-color="#2d4563"}
+
+## Lists with repeated values
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column width="50%"}
+- You can create a list with repeated values using the `*` operator
+- The syntax is very simple and is as follows:
+  - `list = [value] * n`
+
+```{python}
+#| echo: true
+#| eval: true
+# Check our previous list
+list_answers
+```
+- Now, let's create a list with repeated values
+  - Repeat a single value 30 times
+  - Repeat a list 4 times
+  - Repeat 8 null values
+:::
+
+:::{.column width="50%"}
+
+```{python}
+#| echo: true
+#| eval: true
+# Repeat a single value 30 times
+list_two_rep = [7] * 30
+print(list_two_rep)
+```
+
+```{python}
+#| echo: true
+#| eval: true
+# Repeat a list 4 times
+list_answers_rep = list_answers * 4 
+print(list_answers_rep)
+```
+
+```{python}
+#| echo: true
+#| eval: true
+# Repeat 8 null values
+list_none_rep = [None] * 8 
+print(list_none_rep)
+```
+:::
+:::
+:::
+
+## Common pitfalls with lists
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+- A common mistake is to confuse lists and `np.array` objects when doing operations
+- Lists are not arrays, and you cannot perform operations like addition or multiplication
+- You can only concatenate lists using the `+` operator
+
+```{python}
+#| echo: true
+#| eval: true
+# When you multipy a list times a number you repeat the list
+list_a = [1,2,3]
+print(list_a * 4)
+```
+:::{style="margin-top: 20px;"}
+:::
+```{python}
+#| echo: true
+#| eval: true
+# When you add two lists, you concatenate them
+list_b = [4,5,6]
+print(list_a + list_b)
+```
+
+:::{style="margin-top: 30px;"}
+:::
+```{python}
+#| echo: true
+#| eval: true
+# When you multipy an array times a number, you multiply each element
+import numpy as np
+
+vec_a = np.array(list_a)
+print(vec_a * 4)
+```
+
+- Is that clear? 🤓
+:::
+
+## Counting the length of a list
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+- You can count the length of a list using the `len()` function
+
+```{python}
+#| echo: true
+#| eval: true
+# Count the length of the list
+print(len(list_answers))
+```
+:::{style="margin-top: 20px;"}
+:::
+```{python}
+#| echo: true
+#| eval: true
+print(len(list_two_rep))
+```
+:::{style="margin-top: 20px;"}
+:::
+```{python}
+#| echo: true
+#| eval: true
+print(len(list_answers_rep))
+```
+:::
+
+## Try it yourself! 😊 {#sec:lists}
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+- Create an empty list called "list_personal"
+- Add two more values using ".append"
+- Find the total length of the list
+- Change the last value to "Last element" using the index
+- [[Appendix 02]{.button}](#sec:appendix2)
+:::
+
+# For loops in Python 🔄🐍 {background-color="#2d4563"}
+
+## What is a `for` loop?
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column width="50%"}
+- A `for` loop is a way to iterate over a sequence of elements
+- It is a very useful tool to automate repetitive tasks
+- The syntax is similar to an `if` statement, including the colon `:` and the necessary indentation (4 spaces)
+- The syntax is as follows:
+  
+```{verbatim}
+for element in sequence:
+    do something
+```
+:::{style="margin-top: 20px;"}
+:::
+
+```{python}
+#| echo: true
+#| eval: true
+variable = [1,2,3,4]
+
+for i in variable:
+    print(i)
+```
+:::
+
+:::{.column width="50%"}
+![](figures/for-loops.png)
+:::
+:::
+:::
+
+## What can you do with a `for` loop?
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column width="50%"}
+- You can iterate over a list of elements
+  - Numbers, strings, or any other type of object
+
+- You can also iterate over a range of numbers
+- You can even iterate over a list of lists (nested lists) 🤯
+  - This is very useful when working with dataframes or matrices
+
+```{python}
+#| echo: true
+#| eval: true
+students_scores = [
+    ["Alice", 85, 90, 88],
+    ["Bob", 78, 82, 84],
+    ["Charlie", 92, 95, 93]
+]
+
+for i in students_scores:
+    print(i)
+```
+:::
+
+:::{.column width="50%"}
+![](figures/forloop.png)
+:::
+:::
+:::
+
+## Some examples
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+```{python}
+#| echo: true
+#| eval: true
+list_ids = ["KIA", "Ferrari", "Ford", "Tesla"]
+print("Dear customer, we are writing about your " + list_ids[0] + " car.")
+print("Dear customer, we are writing about your " + list_ids[1] + " car.")
+print("Dear customer, we are writing about your " + list_ids[2] + " car.")
+print("Dear customer, we are writing about your " + list_ids[3] + " car.")
+```
+
+:::{.fragment .fade-in}
+- This is a very boring! 🥱
+:::
+
+:::{style="margin-top: 20px;"}
+:::
+
+:::{.fragment .fade-in}
+```{python}
+#| echo: true
+#| eval: true
+list_ids = ["KIA", "Ferrari", "Ford", "Tesla"]
+
+for i in list_ids:
+    print("Dear customer, we are writing about your " + i + " car.")
+```
+:::
+
+:::{.fragment .fade-in}
+- This is much better! 😎
+:::
+:::
+
+## You can also iterate over additional elements
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+- This code iterates over each element in `list_ids` and three additional elements: 'a', 'b', and 'c'. 
+- The `+` operator is used to concatenate `list_ids` with another list `['a', 'b', 'c']`.
+
+- For each element in this combined list, the loop assigns the element to the variable `id` and then prints it out using the `print` function.
+
+```{python}
+#| echo: true
+#| eval: true
+for id in list_ids + ['a', 'b', 'c']:
+    print(id)
+```
+:::
+
+## Customised messages + numbering {#sec:for}
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+- You can also include numbers in your messages
+- Initiate `index = 1` before the loop (just to start at 1, since Python indexes start at 0)
+- Add `index = index + 1` at the end of the body
+
+```{python}
+#| echo: true
+#| eval: true
+list_ids = ["KIA", "Ferrari", "Ford", "Tesla"]
+
+index = 1
+print('We are out of the loop', index)
+for id in list_ids:
+    print("Dear customer, your position is " + str(index) + " on the waitlist" +
+           " and your car brand is " + id )
+    index = index + 1
+    print('We are inside the loop', index)
+```
+:::
+
+## Another example
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+```{python}
+#| echo: true
+#| eval: true
+for i in range(len(list_ids)):
+    print("Dear customer, your position is " + str(i+1) + " on the waitlist" +
+           " and your car brand is " + list_ids[i])
+```
+
+- Who can explain to me what `range(len(list_ids))` does?
+- And what does `str(i+1)` do?
+- [[Appendix 03]{.button}](#sec:appendix3)
+:::
+
+## Saving time while coding!
+### How to make your work easier with `for` loops
+
+:::{style="margin-top: 30px; font-size: 20px;"}
+- Boring 🥱
+
+```{python}
+#| echo: true
+#| eval: true
+import pandas as pd
+import matplotlib.pyplot as plt
+
+carfeatures = pd.read_csv("data/features.csv")
+list_vars = ["acceleration","weight"]
+
+variable_name = "acceleration"
+plt.scatter(x = carfeatures[variable_name],
+            y = carfeatures["mpg"])
+plt.ylabel("mpg")
+plt.xlabel(variable_name)
+plt.show()
+
+variable_name = "weight"
+plt.scatter(x = carfeatures[variable_name], 
+            y = carfeatures["mpg"])
+plt.ylabel("mpg")
+plt.xlabel(variable_name)
+plt.show()
+```
+:::
+
+## Cool 😎
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+
+```{python}
+#| echo: true
+#| eval: true
+carfeatures = pd.read_csv("data/features.csv")
+list_vars = ["acceleration","weight"]
+
+for variable_name in list_vars:
+    plt.scatter(x = carfeatures[variable_name],
+                y = carfeatures["mpg"])
+    plt.ylabel("mpg")
+    plt.xlabel(variable_name)
+    plt.show()
+```
+:::
+
+## Even cooler! 🤩
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+```{python}
+#| echo: true
+#| eval: true
+carfeatures = pd.read_csv("data/features.csv")
+list_vars   = ["acceleration","weight"]
+
+index = 1
+for variable_name in list_vars:
+    plt.scatter(x= carfeatures[variable_name], y = carfeatures["mpg"])
+    plt.ylabel("mpg")
+    plt.xlabel(variable_name)
+    plt.title("Figure " + str(index))
+    plt.show()
+    index = index + 1
+```
+:::
+
+## Solving many equations at once
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+- Solve the equation $y = x^2 + 2x$ for $x = 1,2,4,5,6,7,8,9,10$
+
+```{python}
+#| echo: true
+#| eval: true
+# Create a list of x-values list_x = [1,2,4,5, ..., 50]
+# Create a list of y-values to fill in later.
+
+list_x = [1,2,4,5,6,7,8,9,10]
+list_y = [None] * len(list_x)
+
+# Create an index 
+index = 0
+for x in list_x:
+    list_y[index] = list_x[index]**2 + 2*list_x[index]
+    index = index + 1
+
+# Display results visually
+print(list_y)
+plt.scatter(list_x, list_y)
+plt.xlabel("X-axis")
+plt.ylabel("Y-axis")
+plt.title("Scatter plot of Y = X^2 + 2X")
+plt.show()
+```
+:::
+
+# And that's it for today! 🎉 {background-color="#2d4563"}
+
+# Thank you all for your attention! 🙏🏽😊 {background-color="#2d4563"}
+
+## Appendix 01 {#sec:appendix01}
+### Why the original answer was correct?
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+- The original answer was `(age < 20) | (age > 30)`
+- We thought the answer should be `(age < 25) & (age > 27)`
+- But the correct answer is the original one
+- Why? 🤔
+
+:::{style="margin-top: 20px; font-size: 24px;"}
+:::{.incremental}
+- Think about it with me:
+  - The `&` operator checks if [both conditions are true simultaneously]{.alert}. So, someone should be less than 25 and greater than 27 at the same time, which is impossible.
+  - Therefore, the correct operator is `|`, which checks if [at least one of the conditions is true]{.alert} (but not both!). For the age to be not in the range 25-27, it must be either less than 25 or greater than 27.
+  - Remember, the trick was in the [not in the range]{.alert} part of the question! 🤓
+
+- Does that make sense? 😅
+:::
+:::
+
+[[Back to the main text]{.button}](#sec:thinking)
+:::
+
+## Appendix 02 {#sec:appendix2}
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+- Create an empty list called "list_personal"
+- Add two more values using ".append"
+- Find the total length of the list
+- Change the last value to "Last element"
+
+```{python}
+#| echo: true
+#| eval: true
+list_personal = []
+
+list_personal.append("First element")
+list_personal.append("Second element")
+
+print(len(list_personal))
+```
+
+```{python}
+#| echo: true
+#| eval: true
+# Here I used the index -1 to change the last element
+# You could also use the index 1
+list_personal[-1] = "Last element" 
+print(list_personal)
+```
+
+- Did you get it right? 🤓
+:::
+
+## Appendix 02 - Continued
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+- Here is another way to solve the exercise, now using `list.extend()` and `[1]` index
+
+```{python}
+#| echo: true
+#| eval: true
+list_personal = []
+
+list_personal.extend(["First element", "Second element"])
+print(list_personal)
+print(len(list_personal))
+```
+
+```{python}
+#| echo: true
+#| eval: true
+list_personal[1] = "Last element"
+print(list_personal)
+```
+
+[[Back to the main text]{.button}](#sec:lists)
+:::
+
+## Appendix 03 {#sec:appendix3}
+
+:::{style="margin-top: 30px; font-size: 21px;"}
+1. `range(len(list_ids))`:
+   - `len(list_ids)` gets the length (number of items) in the `list_ids` list.
+   - `range()` then creates a sequence of numbers from 0 up to (but not including) that length.
+   - This allows the loop to iterate over each index of the list[1].
+
+2. `str(i+1)`:
+   - `i` is the current loop index, starting at 0.
+   - `i+1` adds 1 to that index so that the position number starts at 1. (Remember: Python indexes start at 0.)
+   - `str()` converts the resulting number to a string[2].
+   - This is done because `i` starts at 0, but we want to display position numbers starting at 1 for the customers.
+
+So, this code loops through each item in `list_ids`, printing a message for each customer that includes:
+- Their position (index + 1)
+- The corresponding car brand from `list_ids`
+
+The loop will run once for each item in `list_ids`, with `i` taking on values from 0 to `len(list_ids) - 1`.
+  
+[[Back to the main text]{.button}](#sec:for)
+:::
