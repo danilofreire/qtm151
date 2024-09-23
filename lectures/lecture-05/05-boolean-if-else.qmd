@@ -11,7 +11,7 @@ author:
 format:
   clean-revealjs:
     self-contained: true
-    footer: "[Conditional Statements]()"
+    footer: "[Conditional Statements](https://raw.githack.com/danilofreire/qtm151/main/lectures/lecture-05/05-boolean-if-else.html)"
 transition: slide
 transition-speed: default
 scrollable: true
@@ -693,7 +693,7 @@ x**2 + 2*x + 1 == 0
 ## Appendix 03 {#sec:appendix03}
 
 :::{style="margin-top: 30px; font-size: 30px;"}
-Whether age (`age = 31`) is strictly less than 20, or greater than 30
+- Whether age (`age = 31`) is strictly less than 20, or greater than 30
 - Not in the age range 25-27
 
 ```{python}
@@ -702,9 +702,14 @@ Whether age (`age = 31`) is strictly less than 20, or greater than 30
 age = 31
 
 (age < 20) | (age > 30) 
-
+```
+```{python}
+#| echo: true
+#| eval: true
 (age < 25) | (age > 27)
 ```
+
+The second answer uses `|` because `&` evaluates both statements at the same time, and [one cannot be less than 25 and greater than 27 at the same time](https://en.wikipedia.org/wiki/Empty_set). Therefore, it must be `|`.
 
 [[Back to the main text]{.button}](#sec:question03)
 :::
