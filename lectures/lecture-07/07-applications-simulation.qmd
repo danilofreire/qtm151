@@ -10,7 +10,7 @@ author:
 format:
   clean-revealjs:
     self-contained: true
-    footer: "[Simulation](https://danilofreire.github.io/)"
+    footer: "[Simulations](https://raw.githack.com/danilofreire/qtm151/main/lectures/lecture-07/07-applications-simulation.html)"
 transition: slide
 transition-speed: default
 scrollable: true
