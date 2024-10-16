@@ -1,0 +1,511 @@
+---
+title: QTM 151 - Introduction to Statistical Computing II
+subtitle: "Lecture 12 - Application 03: Linear Models"
+date: 2024-10-09
+date-format: "DD MMMM, YYYY"
+author:
+  - name: Danilo Freire
+    email: danilo.freire@emory.edu
+    affiliations: Emory University
+format:
+  clean-revealjs:
+    self-contained: true
+    footer: "[Linear Models](https://raw.githack.com/danilofreire/qtm151/main/lectures/lecture-12/12-linear-models.html)"
+    drop:
+      shortcut: "`"
+      button: true
+      engine: pyodide
+      pyodide:
+        packages:
+          - matplotlib
+          - numpy
+          - pandas
+          - statsmodels
+transition: slide
+transition-speed: default
+scrollable: true
+engine: jupyter
+revealjs-plugins:
+  - drop
+  - fontawesome
+filters:
+  - pyodide
+editor:
+  render-on-save: true
+---
+
+# Hello, everyone! How are you doing? 😊  {background-color="#2d4563"}
+
+## Linear Models
+### How to fit and interpret linear models in Python
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Today we will learn how to run a linear regression using the [`statsmodels` library](https://www.statsmodels.org/stable/index.html) in Python
+- [Linear models](https://en.wikipedia.org/wiki/Linear_regression) (also known as [ordinary least squares](https://en.wikipedia.org/wiki/Ordinary_least_squares)) are the most common type of regression analysis
+  - They are used to predict the value of a dependent variable based on one or more independent variables
+  - As the name implies, the relationship between the dependent variable and the independent variables is assumed to be linear (i.e., a straight line)
+- [But don't worry]{.alert}: if you haven't had statistics before, I will explain everything you need to know (no maths required, trust me! 😅)
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+```{python}
+#| echo: true
+#| eval: true
+#| code-fold: true
+#| code-summary: "Show the code"
+
+# Import libraries
+import numpy as np
+import pandas as pd
+import statsmodels.api as sm
+import matplotlib.pyplot as plt
+
+# Create a pandas DataFrame
+np.random.seed(151)
+x = np.random.normal(loc = 5, scale = 5, size = 100)
+y = 1 + 2*x + np.random.normal(loc = 5, scale = 10, size = 100)
+df = pd.DataFrame({'y': y, 'x': x})
+
+# Estimate OLS
+X = sm.add_constant(x)
+model = sm.OLS(y, X).fit()
+predictions = model.predict(X)
+
+# Create graph
+plt.figure(figsize = (6, 5))
+plt.plot(x, predictions, color = 'red', label = 'OLS regression line')
+plt.scatter(x = df.x, y = df.y, color = "black", alpha= 0.5, label = 'Data points')
+
+# Add labels and legend
+plt.xlabel('Variable X')
+plt.ylabel('Variable Y')
+plt.title('Linear Model')
+plt.legend()
+plt.show()
+```
+:::
+:::
+:::
+:::
+
+## Import and install libraries
+
+:::{style="margin-top: 30px; font-size: 21px;"}
+:::{.columns}
+:::{.column width="50%"}
+- First, let's import the libraries we have seen so far
+
+```{python}
+#| echo: true
+#| eval: false
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+```
+
+- Now, let's install the `statsmodels` library
+- According to the [Anaconda website](https://docs.anaconda.com/anaconda/allpkglists/2024.06-1/), `statsmodels` is already included in the distribution, but you can install it using `conda` or `pip`. 
+
+- Mac and Linux users can run the following command in the terminal:
+
+```bash
+conda install statsmodels
+```
+
+- Windows users can do the following:
+  - Open the Anaconda Prompt then type `conda install statsmodels` and press Enter
+:::
+
+:::{.column width="50%"}
+
+:::{style="text-align: center;"}
+![](figures/statsmodels.avif){width="80%"}
+:::
+
+- `statsmodels` is the go-to library for statistical modelling in Python
+- It has models for linear regression, time series analysis, and much more
+- It works well with `pandas` and `numpy` and [even supports `R`-style formulas](https://www.statsmodels.org/stable/example_formulas.html)
+  - `model = smf.ols(formula = 'Dependent ~ Independent01 + Independent02', data=df)`
+- We will use it to estimate our linear model
+:::
+:::
+:::
+
+## Generate simulated data
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+- Let's generate some simulated data to illustrate how linear models work 😊📈
+- First, let's create an empty DataFrame
+```{python}
+#| echo: true
+#| eval: true 
+dataset = pd.DataFrame()
+```
+
+- Now, let's create two random variables of size 50
+
+```{python}
+#| echo: true
+#| eval: true
+n = 50
+np.random.seed(42)
+dataset["x"] = np.random.normal(loc = 0,scale = 1, size = n)
+dataset["e"] = np.random.normal(loc = 0,scale = 1, size = n) 
+```
+:::{style="margin-top: 30px;"}
+:::
+
+- Let me explain what we're doing here 🤓
+  - `x` is the independent variable, which we will use to predict the dependent variable `y`
+  - `e` is the error term, which represents the noise in the data
+- Why do we include the error term?
+  - Because in real life, we don't have perfect data
+  - The error term is what makes the relationship between `x` and `y` not perfect
+:::
+
+## Generate simulated data
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+- Now, let's create data from the linear model
+- The model will be $y = b_0 + b_1 x + e$, where $b_0 = 1, b_1 = 2.$
+- $b_0$ is the intercept, $b_1$ is the slope, and $e$ is the error term
+
+- Let's create the dependent variable `y` using the formula above
+
+```{python}
+#| echo: true
+#| eval: true
+# Create the dependent variable
+# y = 1 + 2*x + e
+b0 = 1
+b1 = 2
+
+dataset["y"] = b0 + b1 * dataset["x"] + dataset["e"] 
+```
+
+- Then, let's compute the line of best fit
+
+```{python}
+#| echo: true
+#| eval: true
+# Line of best fit 
+dataset["p"] = b0 + b1*dataset["x"]
+dataset.head(3)
+```
+:::
+
+## Visualising the data
+
+:::{style="margin-top: 30px; font-size: 23px;"}
+- Now, let's plot the data and the line of best fit
+  
+```{python}
+#| echo: true
+#| eval: true
+# Plot the data
+plt.scatter(x = dataset["x"], y = dataset["y"])
+plt.plot(dataset["x"], dataset["p"], color = 'green')
+
+plt.xlabel("X Variable")
+plt.ylabel("Y Variable")
+plt.legend(labels = ["Data points", "Best fit line"])
+plt.show() 
+```
+:::
+
+## Try it yourself! 🚀 {#sec:exercise01}
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+- Create a new dataset called `subset_above2` 
+- Subset records with $y \ge 2$ using `.query()`
+- Count the original rows with `len(dataset)`
+- Count the subsetted rows: `len(subset_above2)`
+- Compute the proportion of subsetted observations
+
+- Solution: [[Appendix 01]{.button}](#sec:appendix01)
+:::
+
+## Try it yourself! 🚀 {#sec:exercise02}
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+- Store the sample mean of $y$ as `ybar`
+- Compute the standard deviation of $y$ as `stdv_sample`
+- Use `.query()` to subset observations that satisfy
+
+$$abs\left(y - ybar \right) \le stdv\_sample$$
+
+- HINT: Use ```.mean()``` and ```.std()```
+- HINT: Use the globals ```@xbar```, ```@stdv_sample```
+
+- Solution: [[Appendix 02]{.button}](#sec:appendix02)
+
+:::{style="margin-top: 100px; font-size: 20px;"}
+[Note]{.alert}: `.abs()` is a `pandas` function that returns the absolute value of a number. For example, `abs(-3)` and `abs(3)` both return `3`. It is useful to compute the distance between two numbers without considering their sign, such 5 and -3 (which are 8 units apart): `a = 5; b = -3; abs(a - b) = 8`. More [here](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.abs.html).
+:::
+:::
+
+# Estimate the line of best fit 📈 {background-color="#2d4563"}
+
+## Estimate the line of best fit
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+:::{.columns}
+:::{.column width="50%"}
+- We usually have information about the dependent variable $y$ and the independent variable $x$, but we don't know the coefficients $b_0$ and $b_1$
+- The goal is to estimate the line of best fit that minimises the sum of the squared residuals
+- The residuals are the differences between the observed values of $y$ and the predicted values of $y$
+- The statistical method that estimates the coefficients is called [ordinary least squares (OLS)](https://en.wikipedia.org/wiki/Ordinary_least_squares)
+- If you have used `R` before, this is the same as `lm(y ~ x, data = dataset)`
+:::
+
+:::{.column width="50%"}
+- In Python, we use the `statsmodels` library to estimate the coefficients
+  - We'll use just one part of the library, `statsmodels.api`
+  - Its alias is `sm`
+  - If you want to use `R`-style formulas, you can use `statsmodels.formula.api` (alias `smf`)
+- First, let's load the packages
+
+```{python}
+#| echo: true
+#| eval: true
+# Import the library
+import statsmodels.api as sm 
+import statsmodels.formula.api as smf
+```
+
+- Now let's run the model
+
+```{python}
+#| echo: true
+#| eval: false 
+model = smf.ols(formula = 'y ~ x', data = dataset)
+results = model.fit()
+```
+:::
+:::
+:::
+
+## Estimate the line of best fit
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+```{python}
+#| echo: true
+#| eval: true 
+#| code-fold: true
+#| code-summary: "Show the code"
+from stargazer.stargazer import Stargazer
+
+model = smf.ols(formula='y ~ x', data=dataset)
+results = model.fit()
+
+# Create a Stargazer object
+table = Stargazer([results])
+table
+```
+:::
+
+## Compute the line of best fit
+
+:::{style="margin-top: 30px; font-size: 23px;"}
+- We will use `.params` to get the attribute "parameters from the results"
+
+```{python}
+#| echo: true
+#| eval: true 
+b_list = results.params
+print(b_list)
+```
+
+- We can then compute the `estimated` best fit lines by extracting the intercept and slop from `b_list`
+
+```{python}
+#| echo: true
+#| eval: true
+dataset["p_estimated"] = b_list[0] + b_list[1]  * dataset["x"]
+print(dataset[["p", "p_estimated"]].head(10))
+```
+
+- It's pretty close, right? 😊
+:::
+
+## Visualising the data
+
+:::{style="margin-top: 30px; font-size: 23px;"}
+- Now, let's plot the data and the line of best fit
+- The first line plots the data points
+- The second line plots the estimated best fit line
+- The `legend` command creates a box with the color labels
+
+```{python}
+#| echo: true
+#| eval: true
+plt.scatter(x = dataset["x"], y = dataset["y"])
+plt.plot(dataset["x"], dataset["p_estimated"], color = 'green')
+
+plt.legend(labels = ["Data points","Estimated Predicted Model"])
+plt.show()
+```
+:::
+
+## Try it yourself! 🚀 {#sec:exercise03}
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+- How good is the estimated fit?
+- Create two overlapping lineplots
+- $(x \text{ }$ vs $\text{ } p)$ and $(p_{estimated} \text{ }$ vs $\text{ } p_{estimated})$
+- Create a legend to label each plot
+- Solution: [[Appendix 03]{.button}](#sec:appendix03)
+:::
+
+## Try it yourself! 🚀 {#sec:exercise04}
+
+:::{style="margin-top: 30px; font-size: 25px;"}
+- Compute a column with the formula `sample_error = y - p_estimated`
+- Create a `lambda` function `fn_positive_error = lambda error: error >= 0 `
+- Compute a column for whether the error is positive using `.apply()`
+
+- Solution: [[Appendix 04]{.button}](#sec:appendix04)
+:::
+
+## Try it yourself (last time)! 🚀 {#sec:exercise05}
+
+:::{style="margin-top: 30px; font-size: 25px;"}
+- Compute a new column `error_sqr = sample_error ** 2`
+
+- Calculate the mean of `error_sqr`
+
+- Solution: [[Appendix 05]{.button}](#sec:appendix05)
+:::
+
+# That's all for today! 🎉 {background-color="#2d4563"}
+
+# Enjoy the fall break! 🍂 {background-color="#2d4563"}
+
+## Appendix 01 {#sec:appendix01}
+
+:::{style="margin-top: 30px; font-size: 21px;"}
+- Create a new dataset called ```subset_above2``` 
+- Subset records with $y \ge 2$ using ```.query()```
+- Count the original rows with ```len(dataset)```
+- Count the subsetted rows: ```len(subset_above2)```
+- Compute the proportion of subsetted observations
+
+```{python}
+#| echo: true
+#| eval: true
+# Create the new dataset
+subset_above2 = pd.DataFrame()
+
+# Subset the records with y >= 2
+subset_above2 = dataset.query("y >= 2")
+
+# Count the original rows
+original_rows = len(dataset)
+
+# Count the subsetted rows
+subsetted_rows = len(subset_above2)
+
+# Compute the proportion of subsetted observations
+proportion = subsetted_rows / original_rows
+proportion
+```
+
+[[Back to Exercise 01]{.button}](#sec:exercise01)
+:::
+
+## Appendix 02 {#sec:appendix02}
+
+:::{style="margin-top: 30px; font-size: 21px;"}
+- Store the sample mean of $y$ as `ybar`
+- Compute the standard deviation of $y$ as `stdv_sample`
+- Use `.query()` to subset observations that satisfy $abs\left(y - ybar \right) \le stdv\_sample$
+- HINT: Use `.mean()` and `.std()`
+- HINT: Use the globals `@xbar`, `@stdv_sample`
+
+```{python}
+#| echo: true
+#| eval: true
+# Store the sample mean of y as ybar
+ybar = dataset["y"].mean()
+
+# Compute the standard deviation of y as stdv_sample
+stdv_sample = dataset["y"].std()
+
+# Subset observations that satisfy abs(y - ybar) <= stdv_sample
+subset_within_stdv = dataset.query("abs(y - @ybar) <= @stdv_sample")
+
+# Count the subsetted rows
+len(subset_within_stdv)
+
+```
+
+[[Back to Exercise 02]{.button}](#sec:exercise02)
+:::
+
+## Appendix 03 {#sec:appendix03}
+
+:::{style="margin-top: 30px; font-size: 21px;"}
+- How good is the estimated fit?
+- Create two overlapping lineplots
+- $(x \text{ }$ vs $\text{ } p)$ and $(p_{estimated} \text{ }$ vs $\text{ } p_{estimated})$
+- Create a legend to label each plot
+
+```{python}
+#| echo: true
+#| eval: true
+plt.plot(dataset["x"], dataset["p"], color = 'blue')
+plt.plot(dataset["x"], dataset["p_estimated"], color = 'green')
+
+plt.legend(labels = ["Predicted Model", "Estimated Predicted Model"])
+plt.show()
+```
+
+[[Back to Exercise 03]{.button}](#sec:exercise03)
+:::
+
+## Appendix 04 {#sec:appendix04}
+
+:::{style="margin-top: 30px; font-size: 21px;"}
+- Compute a column with the formula `sample_error = y - p_estimated`
+- Create a `lambda` function `fn_positive_error = lambda error: error >= 0 `
+- Compute a column for whether the error is positive using `.apply()`
+
+```{python}
+#| echo: true
+#| eval: true
+# Compute a column with the formula sample_error = y - p_estimated
+dataset["sample_error"] = dataset["y"] - dataset["p_estimated"]
+
+# Create a lambda function fn_positive_error = lambda error: error >= 0
+fn_positive_error = lambda error: error >= 0
+
+# Compute a column for whether the error is positive using .apply()
+dataset["positive_error"] = dataset["sample_error"].apply(fn_positive_error)
+dataset.head(3)
+```
+
+[[Back to Exercise 04]{.button}](#sec:exercise04)
+:::
+
+## Appendix 05 {#sec:appendix05}
+
+:::{style="margin-top: 30px; font-size: 21px;"}
+- Compute a new column `error_sqr = sample_error ** 2`
+- Calculate the mean of `error_sqr`
+
+```{python}
+#| echo: true
+#| eval: true
+# Compute a new column error_sqr = sample_error ** 2
+dataset["error_sqr"] = dataset["sample_error"] ** 2
+
+# Calculate the mean of error_sqr
+mean_error_sqr = dataset["error_sqr"].mean()
+mean_error_sqr
+```
+
+[[Back to Exercise 05]{.button}](#sec:exercise05)
+:::
