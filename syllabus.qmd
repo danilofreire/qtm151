@@ -1,21 +1,31 @@
 ---
 title: "QTM 151 - Introduction to Statistical Computing II"
-author: "Danilo Freire"
+author: "Danilo Freire"  
 date: "Fall 2024"
-output:
-  pdf_document:
-    fig_caption: yes
-    latex_engine: pdflatex
-    template: syllabus-template.latex
-email: danilo.freire@emory.edu
 fontsize: 12pt
-geometry: margin=1in
-header-includes: \linespread{1.05}
-office: "[36 Eagle Row, room 480](https://maps.app.goo.gl/bGHKwasQyp5MnQND6)"
-officehours: Mon-Fri Afternoon
-classroom: XXX 
-classhours: Mon/Wed, 16:00-16:50 
-web: github.com/danilofreire/qtm151
+fontfamily: libertine
+monofont: inconsolata
+monofontoptions: scaled=.95
+spacing: double
+geometry: 
+  - top=2cm
+  - bottom=2cm
+  - left=2cm
+  - right=2cm
+urlcolor: darkblue
+linkcolor: Mahogany
+citecolor: Mahogany
+engine: jupyter
+highlight-style: arrow
+pdf-engine: pdflatex
+format: 
+    pdf:
+      template: syllabus-template.latex
+      toc: true
+      toc-depth: 3
+      number-sections: false
+editor: 
+  render-on-save: false
 ---
 
 # Course Description
@@ -73,8 +83,8 @@ This course is designed to be self-contained, providing all the necessary resour
 
 # Course Information
 
-We will meet every Monday and Wednesday from 16:00 to 16:50 in the [Anthropology
-Building, 303](https://maps.app.goo.gl/bgxTfADzf1Vz2z1EA). It is important that you read the materials before class. All information about the course is available on the course's GitHub repository at <https://github.com/danilofreire/qtm151>. While I will try to adhere to the course schedule as much as possible, I also want to adapt to your learning pace and style. The syllabus and course plan may change in the semester. Again, please check [the course repository](https://github.com/danilofreire/qtm151) regularly to check for updates. I will also announce any changes in class and via email.
+
+We will meet every Monday and Wednesday from 16:00 to 16:50 in the [Anthropology Building, 303](https://maps.app.goo.gl/bgxTfADzf1Vz2z1EA). It is important that you read the materials before class. All information about the course is available on the course's GitHub repository at <https://github.com/danilofreire/qtm151>. While I will try to adhere to the course schedule as much as possible, I also want to adapt to your learning pace and style. The syllabus and course plan may change in the semester. Again, please check [the course repository](https://github.com/danilofreire/qtm151) regularly to check for updates. I will also announce any changes in class and via email.
 
 # Software
 
@@ -90,7 +100,7 @@ To help you get started, I have prepared [a series of tutorials](https://github.
 
 # Office Hours
 
-I am very flexible with office hours, but it is easier to contact me via email. Feel free to send me a message any time at [danilo.freire@emory.edu](mailto:danilo.freire@emory.edu), and I will likely reply within a few hours. If you prefer, you can meet me in the afternoon at my office. I am in the [Department of Quantitative Theory and Methods](https://qtm.emory.edu) almost every weekday. My office address is in the [Psychology and Interdisciplinary Sciences Building, 36 Eagle Row, room 480](https://maps.app.goo.gl/bGHKwasQyp5MnQND6). If possible, please email me before coming to ensure that no two students book the same time slot.
+I am very flexible with office hours, but it is easier to contact me via email. Feel free to send me a message any time at [danilo.freire@emory.edu](mailto:danilo.freire@emory.edu), and I will likely reply within a few hours. You can also book an appointment with me on [Calendly](https://calendly.com/danilofreire/office-hours), or just email me your availability. If you prefer, you can meet me in the afternoon at my office. I am in the [Department of Quantitative Theory and Methods](https://qtm.emory.edu) almost every weekday. My office address is in the [Psychology and Interdisciplinary Sciences Building, 36 Eagle Row, 5th Floor, room XXXX](https://maps.app.goo.gl/bGHKwasQyp5MnQND6). If possible, please email me before coming to ensure that no two students book the same time slot.
 
 # Academic Integrity
 
@@ -98,7 +108,7 @@ Upon every individual who is a part of Emory University falls the responsibility
 
 # Artificial Intelligence
 
-Students have to submit ten problem sets and complete five in-class quizzes. You are allowed and encouraged to use AI to assist with your assignments. I recommend using [GitHub Copilot](https://copilot.github.com/) to generate code snippets, as it is free for students and provides good suggestions and explanations. [Claude](https://claude.ai), [ChatGPT](https://chat.openai.com), and [Perplexity AI](https://perplexity.ai) are also good tools. I am available to provide support and assistance with these tools during office hours or by appointment. However, please note that any errors or omissions resulting from the use of AI tools are your responsibility. Do not rely solely on AI to complete your assignments; you must always double-check your work. Remember to cite all sources used in your problem sets and projects, including AI tools. 
+Students have to submit ten problem sets and complete five in-class quizzes. You are allowed to use AI to assist with your assignments. I recommend using [GitHub Copilot](https://copilot.github.com/) to generate code snippets, as it is free for students and provides good suggestions and explanations. [Claude](https://claude.ai), [ChatGPT](https://chat.openai.com), and [Perplexity AI](https://perplexity.ai) are also good tools. I am available to provide support and assistance with these tools during office hours or by appointment. However, please note that any errors or omissions resulting from the use of AI tools are your responsibility. Do not rely solely on AI to complete your assignments; you must always double-check your work. Remember to cite all sources used in your problem sets and projects, including AI tools. Please include a note at the end of any document indicating that AI was used in its development.
 
 # Special Needs and Accessibility Services
 
@@ -145,9 +155,10 @@ Weekly suggested readings:
 
 ### Monday, September 02: Labour Day (no class)
 
-### Wednesday September 04:
+### Wednesday, September 04:
 
-- Lecture 02: [GitHub Review](https://danilofreire.github.io/qtm151/lectures/lecture-02/02-github-review.html) and [Introduction to Jupyter Notebooks](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-02/02-jupyter.ipynb).
+- [Lecture 02: GitHub Review](https://danilofreire.github.io/qtm151/lectures/lecture-02/02-github-review.html), [Introduction to Jupyter Notebooks](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-02/02-jupyter.ipynb).
+- Extra lecture: [Lecture Slides](https://raw.githack.com/danilofreire/qtm151/main/lectures/lecture-02/02-github-jupyter.html#/title-slide).  [Video Recording](https://emory-my.sharepoint.com/:v:/g/personal/dafreir_emory_edu/EaTyfePUASBJlUyB-0HuGKkB9YyPc0kS3DARtdAzVst8PQ?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D&e=5BO5Zi).
 - **Assignment 01:** [Problem Set 01](https://github.com/danilofreire/qtm151/blob/main/assignments/01-assignment.ipynb).
 
 Weekly suggested readings:
@@ -162,11 +173,11 @@ Weekly suggested readings:
 
 ### Monday September 09:
 
-- Lecture 03: [Variables and Lists](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-03/03-variables-lists.ipynb).
+-  Lecture 03: Variables and Lists. [Jupyter Notebook](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-03/03-variables-lists.ipynb). [Lecture Slides](https://rawcdn.githack.com/danilofreire/qtm151/4c85d539a1a386e76a2e105625b780d44830dc2d/lectures/lecture-03/03-variables-lists.html)
 
 ### Wednesday, September 11:
 
-- Lecture 04: [Mathematical Operations, Arrays, and Random Numbers](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-04/04-maths-arrays-random.ipynb).
+- Lecture 04: Mathematical Operations, Arrays, and Random Numbers. [Jupyter Notebook](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-04/04-maths-arrays-random.ipynb).
 - **Assignment 01 due (5%).**
 - **Assignment 02:** [Problem Set 02](https://github.com/danilofreire/qtm151/blob/main/assignments/02-assignment.ipynb).
 
@@ -181,11 +192,11 @@ Weekly suggested readings:
 
 ### Monday, September 16:
 
-- Lecture 05: [Boolean Variables and If/Else Statements](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-05/05-boolean-if-else.ipynb).
+- Lecture 05: Boolean Variables and If/Else Statements. [Jupyter Notebook](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-05/05-boolean-if-else.ipynb), [Lecture Slides](https://raw.githack.com/danilofreire/qtm151/main/lectures/lecture-05/05-boolean-if-else.html).
 
 ### Wednesday, September 18:
 
-- Lecture 06: [While Loops and For Loops](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-06/06-while-for.ipynb).
+- Lecture 06: While Loops and For Loops. [Jupyter Notebook](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-06/06-while-for.ipynb), [Lecture Slides](https://raw.githack.com/danilofreire/qtm151/main/lectures/lecture-06/06-while-for.html)
 - **Assignment 02 due (5%).**
 - **Assignment 03:** [Problem Set 03](https://github.com/danilofreire/qtm151/blob/main/assignments/03-assignment.ipynb).
 
@@ -203,7 +214,7 @@ Weekly suggested readings:
 
 ### Monday, September 23:
 
-- Lecture 07: [Applications 1: Simulation Studies](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-07/07-applications-simulation.ipynb).
+- Lecture 07: Applications 1: Simulation Studies. [Jupyter Notebook](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-07/07-applications-simulation.ipynb). [Lecture Slides](https://raw.githack.com/danilofreire/qtm151/main/lectures/lecture-07/07-applications-simulation.html).
 
 ### Wednesday, September 25:
 
@@ -220,7 +231,8 @@ Weekly suggested readings:
 
 ### Monday, September 30:
 
-- Lecture 09: [Global and Local Variables](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-09/09-global-local.ipynb).
+- Monday, September 30: Lecture 09: Global and Local Variables. [Jupyter Notebook](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-09/09-global-local.ipynb). [Lecture Slides](https://raw.githack.com/danilofreire/qtm151/main/lectures/lecture-09/09-global-local.html).
+  - [Kahoot Quiz](https://play.kahoot.it/v2/?quizId=e5422be1-4423-436b-9d99-895879b4d906&hostId=05eb977d-4f8a-440e-9e45-95212b29d103)
 
 ### Wednesday, October 02:
 
@@ -239,7 +251,7 @@ Weekly suggested readings:
 
 ### Monday, October 07:
 
-- Lecture 11: [Subsetting Data](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-11/11-subsetting-data.ipynb).
+- Monday, October 07: Lecture 11: Subsetting Data. [Jupyter Notebook](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-11/11-subsetting-data.ipynb). [Lecture Slides](https://raw.githack.com/danilofreire/qtm151/main/lectures/lecture-11/11-subsetting-data.html)
 
 Weekly suggested readings:
 
@@ -253,7 +265,7 @@ Weekly suggested readings:
 
 ### Wednesday, October 09:
 
-- Lecture 12: [Application 03: Linear Models](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-12/12-linear-models.ipynb). 
+- Wednesday, October 09: Lecture 12: Application 03: Linear Models. [Jupyter Notebook](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-12/12-linear-models.ipynb). [Lecture Slides](https://raw.githack.com/danilofreire/qtm151/main/lectures/lecture-12/12-linear-models.html).
 - **Assignment 05 due (5%).**
 - **Assignment 06:** [Problem Set 06](https://github.com/danilofreire/qtm151/blob/main/assignments/06-assignment.ipynb).
 
@@ -261,7 +273,7 @@ Weekly suggested readings:
 
 ### Wednesday, October 16:
 
-- Lecture 13: [Creating and Replacing Variables](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-13/13-creating-replacing-variables.ipynb).
+- Wednesday, October 16: Lecture 13: Replacing and Recoding Variables. [Jupyter Notebook](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-13/13-replacing-recoding-variables.ipynb). [Lecture Slides](https://raw.githack.com/danilofreire/qtm151/main/lectures/lecture-13/13-replacing-recoding-variables.html).
 - **Assignment 06 due (5%).**
 - **Assignment 07:** [Problem Set 07](https://github.com/danilofreire/qtm151/blob/main/assignments/07-assignment.ipynb).
 
@@ -276,7 +288,7 @@ Weekly suggested readings:
 
 ### Wednesday, October 23:
 
-- Lecture 15: [Aggregating Data](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-15/15-aggregating-data.ipynb).
+- Lecture 15: Aggregating Data. [Jupyter Notebook](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-15/15-aggregating-data.ipynb). [Lecture Slides](https://raw.githack.com/danilofreire/qtm151/main/lectures/lecture-15/15-aggregating-data.html).
 - **Assignment 07 due (5%).**
 - **Assignment 08:** [Problem Set 08](https://github.com/danilofreire/qtm151/blob/main/assignments/08-assignment.ipynb).
 
@@ -291,13 +303,15 @@ Weekly suggested readings:
 
 ### Monday, October 28:
 
-- Lecture 16: [Merging Data](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-16/16-merging-data.ipynb).
+- Lecture 16: Merging Data. [Jupyter Notebook](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-16/16-merging-data.ipynb). [Lecture Slides](https://raw.githack.com/danilofreire/qtm151/main/lectures/lecture-16/16-merging-data.html).
+- [Kahoot Quiz](https://play.kahoot.it/v2/?quizId=2f7a071d-61d4-4069-bed3-ff283a7bd1c3&hostId=05eb977d-4f8a-440e-9e45-95212b29d103).
 
 ### Wednesday, October 30:
 
-- Lecture 17: [Introduction to SQL](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-17/17-introduction-sql.ipynb).
+- Lecture 17: Introduction to SQL. [SQL file](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-17/17-introduction-sql.sql). [Lecture Slides](https://raw.githack.com/danilofreire/qtm151/main/lectures/lecture-17/17-introduction-sql.html).
+- [Kahoot Quiz](https://play.kahoot.it/v2/?quizId=be2a60bb-9c17-49d0-b291-a916be65d5f5&hostId=05eb977d-4f8a-440e-9e45-95212b29d103).
 - **Assignment 08 due (5%).**
-- **Assignment 09:** [Problem Set 09](https://github.com/danilofreire/qtm151/blob/main/assignments/09-assignment.ipynb).
+- **Assignment 09:** [Problem Set 09](https://github.com/danilofreire/qtm151/blob/main/assignments/09-assignment.sql).
 - **Instructions for the Final Project:** [Final Project](https://github.com/danilofreire/qtm151/blob/main/final-project).
 
 Weekly suggested readings:
@@ -315,9 +329,9 @@ Weekly suggested readings:
 
 ### Wednesday, November 06:
 
-- Lecture 19: [Import SQL Data into Python](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-19/19-sql-python.ipynb).
+- Lecture 19: Import SQL Data into Python. [Jupyter Notebook](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-19/19-sql-python.ipynb). [Lecture Slides](https://raw.githack.com/danilofreire/qtm151/main/lectures/lecture-19/19-sql-python.html).
 - **Assignment 09 due (5%).**
-- **Assignment 10:** [Problem Set 10](https://github.com/danilofreire/qtm151/blob/main/assignments/10-assignment.ipynb).
+- **Assignment 10:** [Problem Set 10](https://github.com/danilofreire/qtm151/tree/main/assignments/10-assignment).
 
 Weekly suggested readings:
 
@@ -330,11 +344,12 @@ Weekly suggested readings:
 
 ### Monday, November 11:
 
-- Lecture 20: [Merging Tables in SQL](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-20/20-sql-merging.ipynb).
+- Lecture 20: Merging Tables in SQL. [Jupyter Notebook](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-20/20-sql-merging.ipynb). [Lecture Slides](https://raw.githack.com/danilofreire/qtm151/main/lectures/lecture-20/20-sql-merging.html).
+- [Kahoot Quiz](https://play.kahoot.it/v2/?quizId=6e601286-2112-4bdb-b2da-609dce9d8a26&hostId=05eb977d-4f8a-440e-9e45-95212b29d103).
 
 ### Wednesday, November 13:
 
-- Lecture 21: [Time Series Analysis](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-21/21-time-series.ipynb).
+- Lecture 21: Time Series Analysis. [Jupyter Notebook](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-21/21-time-series.ipynb). [Lecture Slides](https://raw.githack.com/danilofreire/qtm151/main/lectures/lecture-21/21-time-series.html).
 - **Assignment 10 due (5%).**
 
 Weekly suggested readings:
@@ -346,11 +361,11 @@ Weekly suggested readings:
 
 ### Monday, November 18:
 
-- Lecture 22: [**Quiz 4: Application 6: Practice SQL Queries (6%)**](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-22/22-sql-queries.ipynb).
+- Lecture 22: [**Quiz 4: Application 6: Practice SQL Queries (6%)**](https://github.com/danilofreire/qtm151-quiz04).
 
 ### Wednesday, November 20:
 
-- Lecture 23: [Pivot Tables](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-23/23-pivot-tables.ipynb).
+- Lecture 23: Pivot Tables. [Jupyter Notebook](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-23/23-pivot-tables.ipynb). [Lecture Slides](https://raw.githack.com/danilofreire/qtm151/main/lectures/lecture-23/23-pivot-tables.html).
 
 Weekly suggested readings:
 
@@ -363,17 +378,17 @@ Weekly suggested readings:
 
 ### Monday, November 25:
 
-- Lecture 24: [**Quiz 5: Application 8: Time Data, Panel Data, and Plots (6%)**](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-24/24-time-panel-plots.ipynb).
+- Lecture 24: Manipulating Text Data. [Jupyter Notebook](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-24/24-text-data.ipynb). [Lecture Slides](https://raw.githack.com/danilofreire/qtm151/main/lectures/lecture-24/24-text-data.html).
 
 ### Wednesday, November 27: Thanksgiving Break (no class)
 
 ### Monday, December 02:
 
-- Lecture 25: [Manipulating Text Data](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-25/25-text-data.ipynb).
+- Lecture 25: [**Quiz 5: Application 8: Time Data, Panel Data, and Plots (6%)**](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-25/25-time-panel-plots.ipynb).
 
 ### Wednesday, December 04:
 
-- Lecture 26: [Advanced Plots](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-26/26-advanced-plots.ipynb).
+- Lecture 26: Drop-in Session for the Final Project. No readings.
 
 Weekly suggested readings:
 
