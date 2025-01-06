@@ -84,41 +84,45 @@ folder](https://github.com/danilofreire/qtm151/tree/main/lectures):
   - **Assignment 06 due (5%)**
   - **Assignment 07:** [Problem Set 07](https://github.com/danilofreire/qtm151/tree/main/assignments/07-assignment)
 
-- Monday, October 21: [Lecture 14: Quiz 2: Application 04: Random Assignment (6%)](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-14/14-random-assignment.ipynb)
+- Monday, October 21: [Lecture 14: Quiz 2: Application 4: Random Assignment (6%)](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-14/14-random-assignment.ipynb)
 
 - Wednesday, October 23: Lecture 15: Aggregating Data. [Jupyter Notebook](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-15/15-aggregating-data.ipynb). [Lecture Slides](https://raw.githack.com/danilofreire/qtm151/main/lectures/lecture-15/15-aggregating-data.html).
   - **Assignment 07 due (5%)**
   - **Assignment 08:** [Problem Set 08](https://github.com/danilofreire/qtm151/blob/main/assignments/08-assignment.ipynb)
 
-- Monday, October 28: [Lecture 16: Merging Data](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-16/16-merging-data.ipynb)
+- Monday, October 28: Lecture 16: Merging Data. [Jupyter Notebook](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-16/16-merging-data.ipynb). [Lecture Slides](https://raw.githack.com/danilofreire/qtm151/main/lectures/lecture-16/16-merging-data.html).
+  - [Kahoot Quiz](https://play.kahoot.it/v2/?quizId=2f7a071d-61d4-4069-bed3-ff283a7bd1c3&hostId=05eb977d-4f8a-440e-9e45-95212b29d103)
 
-- Wednesday, October 30: [Lecture 17: Introduction to SQL](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-17/17-introduction-sql.ipynb)
-  - **Assignment 08 due (5%)**
-  - **Assignment 09:** [Problem Set 09](https://github.com/danilofreire/qtm151/blob/main/assignments/09-assignment.ipynb)
+- Wednesday, October 30: Lecture 17: Introduction to SQL. [SQL file](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-17/17-introduction-sql.sql). [Lecture Slides](https://raw.githack.com/danilofreire/qtm151/main/lectures/lecture-17/17-introduction-sql.html).
+  - [Kahoot Quiz](https://play.kahoot.it/v2/?quizId=be2a60bb-9c17-49d0-b291-a916be65d5f5&hostId=05eb977d-4f8a-440e-9e45-95212b29d103)
+  - **Assignment 09:** [Problem Set 09](https://github.com/danilofreire/qtm151/blob/main/assignments/09-assignment.sql)
   - **Instructions for the Final Project:** [Final Project](https://github.com/danilofreire/qtm151/blob/main/final-project)
+
+- Friday, November 01: **Assignment 08 due (5%)**
 
 - Monday, November 04: [Lecture 18: Quiz 3: Application 5: Practicing Chaining (6%)](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-18/18-chaining.ipynb)
 
-- Wednesday, November 06: [Lecture 19: Import SQL Data into Python](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-19/19-sql-python.ipynb)
+- Wednesday, November 06: Lecture 19: Import SQL Data into Python. [Jupyter Notebook](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-19/19-sql-python.ipynb). [Lecture Slides](https://raw.githack.com/danilofreire/qtm151/main/lectures/lecture-19/19-sql-python.html).
   - **Assignment 09 due (5%)**
-  - **Assignment 10:** [Problem Set 10](https://github.com/danilofreire/qtm151/blob/main/assignments/10-assignment.ipynb)
+  - **Assignment 10:** [Problem Set 10](https://github.com/danilofreire/qtm151/tree/main/assignments/10-assignment)
 
-- Monday, November 11: [Lecture 20: Merging Tables in SQL](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-20/20-sql-merging.ipynb)
+- Monday, November 11: Lecture 20: Merging Tables in SQL. [Jupyter Notebook](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-20/20-sql-merging.ipynb). [Lecture Slides](https://raw.githack.com/danilofreire/qtm151/main/lectures/lecture-20/20-sql-merging.html).
+  - [Kahoot Quiz](https://play.kahoot.it/v2/?quizId=6e601286-2112-4bdb-b2da-609dce9d8a26&hostId=05eb977d-4f8a-440e-9e45-95212b29d103).
 
-- Wednesday, November 13: [Lecture 21: Time Series Analysis](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-21/21-time-series.ipynb)
+- Wednesday, November 13: Lecture 21: Time Series Analysis. [Jupyter Notebook](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-21/21-time-series.ipynb). [Lecture Slides](https://raw.githack.com/danilofreire/qtm151/main/lectures/lecture-21/21-time-series.html).
   - **Assignment 10 due (5%)**
 
-- Monday, November 18: [Lecture 22: Quiz 4: Application 6: Practice SQL Queries (6%)](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-22/22-sql-queries.ipynb)
+- Monday, November 18: [Lecture 22: Quiz 4: Application 6: Practice SQL Queries (6%)](https://github.com/danilofreire/qtm151-quiz04)
 
-- Wednesday, November 20: [Lecture 23: Pivot Tables](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-23/23-pivot-tables.ipynb)
+- Wednesday, November 20: Lecture 23: Pivot Tables. [Jupyter Notebook](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-23/23-pivot-tables.ipynb). [Lecture Slides](https://raw.githack.com/danilofreire/qtm151/main/lectures/lecture-23/23-pivot-tables.html).
 
-- Monday, November 25: [Lecture 24: Quiz 5: Application 8: Time Data, Panel Data, and Plots (6%)](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-24/24-time-panel-plots.ipynb)
+- Monday, November 25: Lecture 24: Manipulating Text Data. [Jupyter Notebook](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-24/24-text-data.ipynb). [Lecture Slides](https://raw.githack.com/danilofreire/qtm151/main/lectures/lecture-24/24-text-data.html).
 
 - Wednesday, November 27: Thanksgiving Break (no class)
 
-- Monday, December 02: [Lecture 25: Manipulating Text Data](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-25/25-text-data.ipynb)
+- Monday, December 02: [Lecture 25: Quiz 5: Application 8: Time Data, Panel Data, and Plots (6%)](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-25/25-time-panel-plots.ipynb)
 
-- Wednesday, December 04: [Lecture 26: Advanced Plots](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-26/26-advanced-plots.ipynb)
+- Wednesday, December 04: Drop-in session for the final project (no readings).
 
 - Monday, December 09: **Final Project due (20%)**
 
