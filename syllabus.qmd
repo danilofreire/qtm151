@@ -143,7 +143,7 @@ The lecture notes cover all the necessary material for the course, and the weekl
 ### Wednesday, August 28:
 
 - Syllabus and course repository: <https://github.com/danilofreire/qtm151>.
-- Lecture 01: [Welcome to QTM 151 - Introduction](https://danilofreire.github.io/qtm151/lectures/lecture-01/01-introduction.html).
+- Lecture 01: [Welcome to QTM 151 - Introduction](https://raw.githack.com/danilofreire/qtm151/main/lectures/lecture-01/01-introduction.html).
 - [Course Tutorials: How to Install Anaconda, Jupyter, PostgreSQL, VSCode, and Open a Free Educational Account on GitHub](https://github.com/danilofreire/qtm151/tutorials).
 
 Weekly suggested readings:
@@ -157,7 +157,7 @@ Weekly suggested readings:
 
 ### Wednesday, September 04:
 
-- [Lecture 02: GitHub Review](https://danilofreire.github.io/qtm151/lectures/lecture-02/02-github-review.html), [Introduction to Jupyter Notebooks](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-02/02-jupyter.ipynb).
+- [Lecture 02: GitHub Review](https://raw.githack.com/danilofreire/qtm151/main/lectures/lecture-02/02-github-jupyter.html), [Introduction to Jupyter Notebooks](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-02/02-jupyter.ipynb).
 - Extra lecture: [Lecture Slides](https://raw.githack.com/danilofreire/qtm151/main/lectures/lecture-02/02-github-jupyter.html#/title-slide).  [Video Recording](https://emory-my.sharepoint.com/:v:/g/personal/dafreir_emory_edu/EaTyfePUASBJlUyB-0HuGKkB9YyPc0kS3DARtdAzVst8PQ?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D&e=5BO5Zi).
 - **Assignment 01:** [Problem Set 01](https://github.com/danilofreire/qtm151/blob/main/assignments/01-assignment.ipynb).
 
