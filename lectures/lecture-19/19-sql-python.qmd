@@ -1,8 +1,6 @@
 ---
 title: QTM 151 - Introduction to Statistical Computing II
 subtitle: Lecture 19 - SQL and Python
-date: 2024-10-06
-date-format: "DD MMMM, YYYY"
 author:
   - name: Danilo Freire
     email: danilo.freire@emory.edu

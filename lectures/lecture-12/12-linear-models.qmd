@@ -1,8 +1,6 @@
 ---
 title: QTM 151 - Introduction to Statistical Computing II
 subtitle: "Lecture 12 - Application 03: Linear Models"
-date: 2024-10-09
-date-format: "DD MMMM, YYYY"
 author:
   - name: Danilo Freire
     email: danilo.freire@emory.edu
@@ -11,25 +9,12 @@ format:
   clean-revealjs:
     self-contained: true
     footer: "[Linear Models](https://raw.githack.com/danilofreire/qtm151/main/lectures/lecture-12/12-linear-models.html)"
-    drop:
-      shortcut: "`"
-      button: true
-      engine: pyodide
-      pyodide:
-        packages:
-          - matplotlib
-          - numpy
-          - pandas
-          - statsmodels
 transition: slide
 transition-speed: default
 scrollable: true
 engine: jupyter
 revealjs-plugins:
-  - drop
   - fontawesome
-filters:
-  - pyodide
 editor:
   render-on-save: true
 ---

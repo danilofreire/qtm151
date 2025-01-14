@@ -1,8 +1,6 @@
 ---
 title: QTM 151 - Introduction to Statistical Computing II
 subtitle: Lecture 05 - Boolean Logic and Conditional Statements
-date: last-modified
-date-format: "DD MMMM, YYYY"
 author:
   - name: Danilo Freire
     orcid: 0000-0002-4712-6810

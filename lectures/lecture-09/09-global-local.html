@@ -1231,7 +1231,6 @@ Danilo Freire
     </div>
 </div>
 
-  <p class="date">30 September, 2024</p>
 </section>
 <section id="hello-again" class="title-slide slide level1 center" data-background-color="#2d4563">
 <h1>Hello again! 🥳</h1>
@@ -1330,7 +1329,7 @@ Danilo Freire
 <li>They are stored in the <span class="alert">global namespace</span> and are <span class="alert">accessible</span> from anywhere in the code</li>
 <li>Global variables are created when you assign them values, and are destroyed when you close Python</li>
 </ul>
-<div id="5d56192f" class="cell" data-execution_count="1">
+<div id="44f923b4" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href></a>message_hello <span class="op">=</span> <span class="st">&quot;hello&quot;</span></span>
 <span id="cb2-2"><a href></a>number3       <span class="op">=</span> <span class="dv">3</span></span>
 <span id="cb2-3"><a href></a></span>
@@ -1361,7 +1360,7 @@ Danilo Freire
 <li><span class="math inline">\(f(x,y,z) = x + y + z\)</span></li>
 <li>We will pass the numbers as arguments to the function</li>
 </ul>
-<div id="87072fae" class="cell" data-execution_count="2">
+<div id="fb0b611f" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href></a><span class="co"># Correct example:</span></span>
 <span id="cb4-2"><a href></a><span class="kw">def</span> fn_add_recommended(x,y,z):</span>
 <span id="cb4-3"><a href></a>    <span class="cf">return</span>(x <span class="op">+</span> y <span class="op">+</span> z)</span>
@@ -1377,7 +1376,7 @@ Danilo Freire
 <ul>
 <li>If you do not include the variables as parameters, Python will try to use global variables if they exist</li>
 </ul>
-<div id="7cf08ceb" class="cell" data-execution_count="3">
+<div id="2ecee8fd" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href></a><span class="co"># Incorrect example:</span></span>
 <span id="cb6-2"><a href></a><span class="kw">def</span> fn_add_notrecommended(x,y):</span>
 <span id="cb6-3"><a href></a>    <span class="cf">return</span>(x <span class="op">+</span> y <span class="op">+</span> z)</span>
@@ -1415,7 +1414,7 @@ Danilo Freire
 <li>Example:</li>
 <li>In the code below, <code>x</code> is a local variable to the function <code>print_x()</code></li>
 </ul>
-<div id="ff91eeb0" class="cell" data-execution_count="4">
+<div id="379d6f77" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href></a><span class="kw">def</span> print_x():</span>
 <span id="cb10-2"><a href></a>    x <span class="op">=</span> <span class="dv">20</span>  <span class="co"># Local scope</span></span>
 <span id="cb10-3"><a href></a>    <span class="bu">print</span>(x)  <span class="co"># Prints 20 (local)</span></span>
@@ -1437,7 +1436,7 @@ Danilo Freire
 <h2>Local variables supercede global variables</h2>
 <h3 id="remember-the-legb-rule">Remember the LEGB rule</h3>
 <div style="margin-top: 30px; font-size: 22px;">
-<div id="5bbdbd99" class="cell" data-execution_count="5">
+<div id="53bd68ed" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href></a><span class="co"># This is an example where we define a quadratic function</span></span>
 <span id="cb12-2"><a href></a><span class="co"># (x,y) are both local variables of the function</span></span>
 <span id="cb12-3"><a href></a><span class="co"># </span></span>
@@ -1466,7 +1465,7 @@ Danilo Freire
 <section id="local-variables-are-not-stored-in-the-working-environment" class="slide level2">
 <h2>Local variables are not stored in the working environment</h2>
 <div style="margin-top: 30px; font-size: 22px;">
-<div id="db6ebd12" class="cell" data-execution_count="6">
+<div id="9c02b88f" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href></a><span class="co"># The following code assigns a global variable x</span></span>
 <span id="cb14-2"><a href></a><span class="co"># Inside the function</span></span>
 <span id="cb14-3"><a href></a></span>
@@ -1504,7 +1503,7 @@ Example 2:
 <li>If you want to change a global variable inside a function, you need to use the <code>global</code> keyword</li>
 <li>The <code>global</code> keyword tells Python that you want to use the global variable, not create a new local variable</li>
 </ul>
-<div id="22245f85" class="cell" data-execution_count="7">
+<div id="8183de3c" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href></a><span class="kw">def</span> modify_x():</span>
 <span id="cb16-2"><a href></a>    <span class="kw">global</span> x</span>
 <span id="cb16-3"><a href></a>    x <span class="op">=</span> x <span class="op">+</span> <span class="dv">5</span></span>
@@ -1531,7 +1530,7 @@ Example 2:
 <div style="margin-top: 30px; font-size: 24px;">
 <div class="columns">
 <div class="column" style="width:50%;">
-<div id="de7e78f8" class="cell" data-execution_count="8">
+<div id="0e0d7b09" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href></a><span class="kw">def</span> modify_x():</span>
 <span id="cb18-2"><a href></a>    <span class="kw">global</span> x</span>
 <span id="cb18-3"><a href></a>    x <span class="op">=</span> x <span class="op">+</span> <span class="dv">5</span></span>
@@ -1565,7 +1564,7 @@ Example 2:
 <li>Python has a list of variables that are always available to prevent you from using the same names</li>
 <li>Most of them are error names</li>
 </ul>
-<div id="68716aff" class="cell" data-execution_count="9">
+<div id="a4276f2e" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href></a><span class="bu">print</span>(<span class="bu">len</span>(<span class="st">&quot;hello&quot;</span>))</span>
 <span id="cb20-2"><a href></a></span>
 <span id="cb20-3"><a href></a>m <span class="op">=</span> <span class="bu">min</span>([<span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">7</span>])</span>
@@ -1576,7 +1575,7 @@ Example 2:
 </div>
 </div>
 </div><div class="column" style="width:50%;">
-<div id="f75c147c" class="cell" data-execution_count="10">
+<div id="6f60d10f" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href></a><span class="im">import</span> builtins</span>
 <span id="cb22-2"><a href></a></span>
 <span id="cb22-3"><a href></a><span class="co"># View a list of attributes of a given object with dir()</span></span>
@@ -1607,7 +1606,7 @@ Example 2:
 <div style="margin-top: 30px; font-size: 22px;">
 <div class="columns">
 <div class="column" style="width:50%;">
-<div id="d2303338" class="cell" data-execution_count="11">
+<div id="4ab78d09" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href></a><span class="co"># Define a function that </span></span>
 <span id="cb24-2"><a href></a><span class="co"># contains another function</span></span>
 <span id="cb24-3"><a href></a><span class="kw">def</span> outer():</span>
@@ -1628,7 +1627,7 @@ outer x</code></pre>
 </div>
 </div>
 </div><div class="column" style="width:50%;">
-<div id="458f100f" class="cell" data-execution_count="12">
+<div id="651e47a1" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href></a><span class="co"># Define a function that </span></span>
 <span id="cb26-2"><a href></a><span class="co"># contains another function</span></span>
 <span id="cb26-3"><a href></a><span class="kw">def</span> outer():</span>
@@ -1700,7 +1699,7 @@ outer x</code></pre>
 <section id="applying-functions-to-a-dataset-1" class="slide level2">
 <h2>Applying functions to a dataset</h2>
 <div style="margin-top: 30px; font-size: 24px;">
-<div id="d638304a" class="cell" data-execution_count="13">
+<div id="a9794419" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb28-2"><a href></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb28-3"><a href></a></span>
@@ -1718,7 +1717,7 @@ outer x</code></pre>
 2  1.732051  2.449490  3.000000</code></pre>
 </div>
 </div>
-<div id="ccde790c" class="cell" data-execution_count="14">
+<div id="544a9f2b" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href></a><span class="bu">print</span>(df.<span class="bu">apply</span>(np.<span class="bu">sum</span>, axis<span class="op">=</span><span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>0    12
@@ -1727,7 +1726,7 @@ outer x</code></pre>
 dtype: int64</code></pre>
 </div>
 </div>
-<div id="64db0351" class="cell" data-execution_count="15">
+<div id="4ef47ee7" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href></a><span class="bu">print</span>(df.<span class="bu">apply</span>(<span class="kw">lambda</span> x: x<span class="op">**</span><span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   A   B   C
@@ -1746,7 +1745,7 @@ dtype: int64</code></pre>
 <ul>
 <li>Let’s do a quick exercise</li>
 </ul>
-<div id="49943e6a" class="cell" data-execution_count="16">
+<div id="e3385c14" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href></a><span class="co"># Create an empty DataFrame</span></span>
 <span id="cb34-2"><a href></a>data <span class="op">=</span> pd.DataFrame()</span>
 <span id="cb34-3"><a href></a></span>
@@ -1820,7 +1819,7 @@ text-align: right;
 <ul>
 <li>Now let’s define some functions</li>
 </ul>
-<div id="6522be07" class="cell" data-execution_count="17">
+<div id="d6295186" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href></a><span class="co"># The first two functions return True/False depending on age constraints</span></span>
 <span id="cb35-2"><a href></a><span class="co"># The third function returns the sum of two numbers</span></span>
 <span id="cb35-3"><a href></a><span class="co"># The fourth function returns a string with the age bracket</span></span>
@@ -1849,7 +1848,7 @@ text-align: right;
 <ul>
 <li>Now let’s apply the functions to the <code>data[&quot;age&quot;]</code> column</li>
 </ul>
-<div id="06fcd894" class="cell" data-execution_count="18">
+<div id="d8e8be94" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href></a>data[<span class="st">&quot;can_vote&quot;</span>]    <span class="op">=</span> data[<span class="st">&quot;age&quot;</span>].<span class="bu">apply</span>(fn_iseligible_vote)</span>
 <span id="cb36-2"><a href></a>data[<span class="st">&quot;in_twenties&quot;</span>] <span class="op">=</span> data[<span class="st">&quot;age&quot;</span>].<span class="bu">apply</span>(fn_istwenties)</span>
 <span id="cb36-3"><a href></a>data[<span class="st">&quot;age_bracket&quot;</span>] <span class="op">=</span> data[<span class="st">&quot;age&quot;</span>].<span class="bu">apply</span>(fn_agebracket)</span>
@@ -1941,7 +1940,7 @@ text-align: right;
 <ul>
 <li>You can also create a new variable using the <code>apply</code> function</li>
 </ul>
-<div id="17e7b454" class="cell" data-execution_count="19">
+<div id="84c24047" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href></a><span class="co"># Creating a new variable</span></span>
 <span id="cb37-2"><a href></a>data[<span class="st">&quot;new_var&quot;</span>] <span class="op">=</span> data[<span class="st">&quot;age&quot;</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> age: age <span class="op">&gt;=</span> <span class="dv">18</span>)</span>
 <span id="cb37-3"><a href></a></span>
@@ -2038,7 +2037,7 @@ text-align: right;
 <ul>
 <li>You can also delete a variable using the <code>drop</code> function</li>
 </ul>
-<div id="bf750b4b" class="cell" data-execution_count="20">
+<div id="038b5337" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href></a>data <span class="op">=</span> data.drop(columns <span class="op">=</span> [<span class="st">&quot;new_var&quot;</span>])</span>
 <span id="cb38-2"><a href></a></span>
 <span id="cb38-3"><a href></a>display(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -2140,7 +2139,7 @@ text-align: right;
 <div style="font-size: 20px;">
 <div class="columns">
 <div class="column" style="width:50%;">
-<div id="f209f3cd" class="cell" data-execution_count="21">
+<div id="7c7b3689" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href></a>data[<span class="st">&quot;age_bracket01&quot;</span>] <span class="op">=</span> data[<span class="st">&quot;age&quot;</span>].<span class="bu">map</span>(fn_agebracket)</span>
 <span id="cb39-2"><a href></a></span>
 <span id="cb39-3"><a href></a>display(data[[<span class="st">&quot;age&quot;</span>,<span class="st">&quot;age_bracket01&quot;</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -2199,7 +2198,7 @@ text-align: right;
 </div>
 </div>
 </div><div class="column" style="width:50%;">
-<div id="3c7e5b99" class="cell" data-execution_count="22">
+<div id="94edda13" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href></a>data[<span class="st">&quot;age_bracket02&quot;</span>] <span class="op">=</span> data[<span class="st">&quot;age&quot;</span>].<span class="bu">apply</span>(fn_agebracket)</span>
 <span id="cb40-2"><a href></a></span>
 <span id="cb40-3"><a href></a>display(data[[<span class="st">&quot;age&quot;</span>,<span class="st">&quot;age_bracket02&quot;</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -2269,7 +2268,7 @@ text-align: right;
 <ul>
 <li>Using <code>map</code> with a list and an array</li>
 </ul>
-<div id="6e5eb3ff" class="cell" data-execution_count="23">
+<div id="f5c8dd7f" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href></a><span class="co"># Create a list</span></span>
 <span id="cb41-2"><a href></a>list01 <span class="op">=</span> [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>]</span>
 <span id="cb41-3"><a href></a></span>
@@ -2281,7 +2280,7 @@ text-align: right;
 <pre><code>[1, 4, 9, 16, 25]</code></pre>
 </div>
 </div>
-<div id="d21a5a02" class="cell" data-execution_count="24">
+<div id="17633e2a" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href></a><span class="co"># Create a numpy array</span></span>
 <span id="cb43-2"><a href></a>array01 <span class="op">=</span> np.array([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>])</span>
 <span id="cb43-3"><a href></a></span>
@@ -2297,7 +2296,7 @@ text-align: right;
 <ul>
 <li>Trying to use <code>apply</code> with a list or an array will raise an error</li>
 </ul>
-<div id="daf1e176" class="cell" data-execution_count="25">
+<div id="3ecc650d" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href></a><span class="co"># Create a list</span></span>
 <span id="cb45-2"><a href></a>list01 <span class="op">=</span> [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>]</span>
 <span id="cb45-3"><a href></a></span>
@@ -2382,7 +2381,7 @@ text-align: right;
 <ul>
 <li>We can import functions into the working environment from a file</li>
 </ul>
-<div id="e9c2f000" class="cell" data-execution_count="26">
+<div id="96db8584" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href></a><span class="co"># Import the folder `scripts` as a package</span></span>
 <span id="cb47-2"><a href></a><span class="co"># And the file `example_functions.py` as `ef`</span></span>
 <span id="cb47-3"><a href></a><span class="im">import</span> scripts.example_functions <span class="im">as</span> ef</span>
@@ -2395,7 +2394,7 @@ text-align: right;
 <pre><code>4
 27</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="84">
+<div class="cell-output cell-output-display" data-execution_count="24">
 <pre><code>&#39;hi Juan&#39;</code></pre>
 </div>
 </div>
@@ -2418,7 +2417,7 @@ text-align: right;
 <ul>
 <li>Example:</li>
 </ul>
-<div id="8dfe07f6" class="cell" data-execution_count="27">
+<div id="1f52a151" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href></a><span class="im">import</span> scripts.example_variables <span class="im">as</span> ev</span>
 <span id="cb50-2"><a href></a></span>
 <span id="cb50-3"><a href></a><span class="co"># When we run this code</span></span>
@@ -2461,7 +2460,7 @@ text-align: right;
 <div style="margin-top: 30px; font-size: 24px;">
 <div class="columns">
 <div class="column" style="width:50%;">
-<div id="bc6a29b9" class="cell" data-execution_count="28">
+<div id="63ffccfe" class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href></a><span class="kw">def</span> modify_x():</span>
 <span id="cb52-2"><a href></a>    <span class="kw">global</span> x</span>
 <span id="cb52-3"><a href></a>    x <span class="op">=</span> x <span class="op">+</span> <span class="dv">5</span></span>
@@ -2481,7 +2480,7 @@ text-align: right;
 </div>
 </div>
 </div><div class="column" style="width:50%;">
-<div id="54619b6f" class="cell" data-execution_count="29">
+<div id="2b70fa51" class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href></a><span class="kw">def</span> fn_square(x):</span>
 <span id="cb54-2"><a href></a>    <span class="kw">global</span> y</span>
 <span id="cb54-3"><a href></a>    y <span class="op">=</span> x<span class="op">**</span><span class="dv">2</span></span>
@@ -2513,7 +2512,7 @@ text-align: right;
 <li>Add a variable to the dataset called <code>has_siblings</code></li>
 <li>Assign True/False to this variable using <code>apply()</code></li>
 </ul>
-<div id="40524d39" class="cell" data-execution_count="30">
+<div id="5eb37da1" class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href></a>fn_has_siblings <span class="op">=</span> <span class="kw">lambda</span> num_siblings: num_siblings <span class="op">&gt;=</span> <span class="dv">1</span></span>
 <span id="cb56-2"><a href></a></span>
 <span id="cb56-3"><a href></a>data[<span class="st">&quot;has_siblings&quot;</span>] <span class="op">=</span> data[<span class="st">&quot;num_adult_siblings&quot;</span>].<span class="bu">apply</span>(fn_has_siblings)</span>
@@ -2585,7 +2584,7 @@ text-align: right;
 <li>Add a variable <code>mpg_above_29</code> which is <code>True/False</code> if <code>mpg</code> <span class="math inline">\(\ge\)</span> 29</li>
 <li>Store the new dataset to <code>data_clean/features.csv</code></li>
 </ul>
-<div id="7af97aad" class="cell" data-execution_count="31">
+<div id="4adf344c" class="cell" data-execution_count="31">
 <div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href></a>data_raw <span class="op">=</span> pd.read_csv(<span class="st">&quot;data_raw/features.csv&quot;</span>)</span>
 <span id="cb57-2"><a href></a></span>
 <span id="cb57-3"><a href></a>data_raw[<span class="st">&quot;mpg_above_29&quot;</span>] <span class="op">=</span> data_raw[<span class="st">&quot;mpg&quot;</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> mpg: mpg <span class="op">&gt;=</span> <span class="dv">29</span>)</span>
@@ -2695,7 +2694,7 @@ text-align: right;
 <li>Use the <code>list(map())</code> function to output a list with the form</li>
 <li><code>[&quot;A banana is yellow&quot;,&quot;A strawberry is red&quot;,&quot;A kiwi is green&quot;]</code></li>
 </ul>
-<div id="8a38ee12" class="cell" data-execution_count="32">
+<div id="1077db9c" class="cell" data-execution_count="32">
 <div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href></a>fn_fruitcolor <span class="op">=</span> <span class="kw">lambda</span> fruit, color: <span class="bu">print</span>(<span class="st">&quot;A &quot;</span> <span class="op">+</span> fruit <span class="op">+</span> <span class="st">&quot; is &quot;</span> <span class="op">+</span> color)</span>
 <span id="cb58-2"><a href></a></span>
 <span id="cb58-3"><a href></a>list_fruits  <span class="op">=</span> [<span class="st">&quot;banana&quot;</span>,<span class="st">&quot;strawberry&quot;</span>,<span class="st">&quot;kiwi&quot;</span>]</span>
@@ -2707,7 +2706,7 @@ text-align: right;
 A strawberry is red
 A kiwi is green</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="90">
+<div class="cell-output cell-output-display" data-execution_count="30">
 <pre><code>[None, None, None]</code></pre>
 </div>
 </div>

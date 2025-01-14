@@ -1,8 +1,6 @@
 ---
 title: GitHub Review
 subtitle: Further details on GitHub and Anaconda
-date: 2024-09-04
-date-format: "DD MMMM, YYYY"
 author:
   - name: Danilo Freire
     email: danilo.freire@emory.edu

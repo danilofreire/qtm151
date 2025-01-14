@@ -1,8 +1,6 @@
 ---
 title: QTM 151 - Intro to Stats Computing II
 subtitle: Lecture 15 - Aggregating Data
-date: 2024-10-23
-date-format: "DD MMMM, YYYY"
 author:
   - name: Danilo Freire
     email: danilo.freire@emory.edu
@@ -12,23 +10,12 @@ format:
     self-contained: true
     code-overflow: wrap
     footer: "[Aggregating Data](https://raw.githack.com/danilofreire/qtm151/main/lectures/lecture-15/15-aggregating-data.html)"
-    drop:
-      button: true
-      engine: pyodide
-      pyodide:
-        packages:
-          - matplotlib
-          - micropip
-          - numpy
-          - pandas
-          - seaborn
 transition: slide
 transition-speed: default
 scrollable: true
 engine: jupyter
 revealjs-plugins:
   - appearance
-  - drop
   - fontawesome
   - multimodal
 editor:

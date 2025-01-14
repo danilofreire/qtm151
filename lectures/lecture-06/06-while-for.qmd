@@ -1,8 +1,6 @@
 ---
 title: QTM 151 - Introduction to Statistical Computing II
 subtitle: Lecture 06 - For Loops
-date: 2024-09-18
-date-format: "DD MMMM, YYYY"
 author:
   - name: Danilo Freire
     email: danilo.freire@emory.edu

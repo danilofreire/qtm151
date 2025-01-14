@@ -1,8 +1,6 @@
 ---
 title: QTM 151 - Introduction to Stats Computing II
 subtitle: Lecture 16 - Merging Data
-date: 2024-10-28
-date-format: "DD MMMM, YYYY"
 author:
   - name: Danilo Freire
     email: danilo.freire@emory.edu
@@ -12,23 +10,12 @@ format:
     self-contained: true
     code-overflow: wrap
     footer: "[Merging Data](https://raw.githack.com/danilofreire/qtm151/main/lectures/lecture-16/16-merging-data.html)"
-    drop:
-      button: true
-      engine: pyodide
-      pyodide:
-        packages:
-          - matplotlib
-          - micropip
-          - numpy
-          - pandas
-          - seaborn
 transition: slide
 transition-speed: default
 scrollable: true
 engine: jupyter
 revealjs-plugins:
   - appearance
-  - drop
   - fontawesome
   - multimodal
 editor:
